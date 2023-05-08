@@ -24,8 +24,8 @@ namespace Project_CSDLBanHang
                 QuanLyDTO quanLy = QuanLyBLL.dangNhapQuanLy(taiKhoan,matKhau);
                 if(quanLy!=null)
                 {
-                    formQuanLy formQuanLy = new formQuanLy();
-                    this.Close();
+                    formQuanLy formQuanLy = new formQuanLy(this);
+                    this.Hide();
                     formQuanLy.Show();
                     
                 }
@@ -58,7 +58,7 @@ namespace Project_CSDLBanHang
                 NhanVienDTO nhanVien = NhanVienBLL.dangNhapNhanVien(taiKhoan, matKhau);
                 if (nhanVien != null)
                 {
-                    formNhanVien formNhanVien = new formNhanVien();
+                    formNhanVien formNhanVien = new formNhanVien(this);
                     this.Hide();
                     formNhanVien.Show();
 
@@ -71,6 +71,15 @@ namespace Project_CSDLBanHang
             else
             {
                 MessageBox.Show("Bạn phải nhập đủ tài khoản và mật khẩu!", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnThoat_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Bạn có muốn thoát ứng dụng không?", "Thông báo!", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            if (result == DialogResult.Yes)
+            {
+                Application.Exit();
             }
         }
     }
