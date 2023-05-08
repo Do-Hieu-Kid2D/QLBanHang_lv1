@@ -1,54 +1,77 @@
 ﻿using System;
-
-using System.Data;
-using System.Data.SqlClient;
-using System.Data.SqlTypes;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using BLL;
+using DTO;
+using GUI;
 
 namespace Project_CSDLBanHang
 {
+
     public partial class formDangNhap : Form
     {
         public formDangNhap()
         {
             InitializeComponent();
         }
-        string strCon = @"Data Source=DKID\SEVERTEN;Initial Catalog=lv22;Integrated Security=True";
+
 
         private void btnQuanLy_Click(object sender, EventArgs e)
         {
-            string taiKhoan = txtTaiKhoan.Text;
-            string matKhau = txtMatKhau.Text;
-            string query = "select * from Quanly where taiKhoan = '" + taiKhoan + "' and matKhau ='" + matKhau + "';";
-            SqlConnection sqlCon = new SqlConnection(strCon);
-            sqlCon.Open();
-            SqlCommand cmd = sqlCon.CreateCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = query;
-            SqlDataReader reader = cmd.ExecuteReader();
-            if (reader.Read())
+            if (checkInput())
             {
-                // Nếu nó đọc đc -> trả về data -> ở bài này mk băm nhỏ ra hiện vào từng txt
-                string id = reader.GetString(0);
-                string ten = reader.GetString(3);
-                MessageBox.Show(id + "   " + ten);
-                //string ngaySinh = reader.GetString(4);
-
+                string taiKhoan= txtTaiKhoan.Text;
+                string matKhau = txtMatKhau.Text;
+                QuanLyDTO quanLy = QuanLyBLL.dangNhapQuanLy(taiKhoan,matKhau);
+                if(quanLy!=null)
+                {
+                    formQuanLy formQuanLy = new formQuanLy();
+                    this.Close();
+                    formQuanLy.Show();
+                    
+                }
+                else
+                {
+                    MessageBox.Show("Tài khoản đăng nhập hoặc mật khẩu không chính xác!\n\r Vui vòng đăng nhập lại.", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            // đóng đầu đọc
-            reader.Close();
-            cmd.Dispose();
-            sqlCon.Close();
-            sqlCon.Dispose();
+            else
+            {
+                MessageBox.Show("Bạn phải nhập đủ tài khoản và mật khẩu!", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+}
+
+        public Boolean checkInput()
+        {
+            if (txtMatKhau.Text == "" || txtTaiKhoan.Text == "")
+            {
+                return false;
+            }
+            return true;
         }
 
-        private void formDangNhap_Load(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
+            if (checkInput())
+            {
+                string taiKhoan = txtTaiKhoan.Text;
+                string matKhau = txtMatKhau.Text;
+                NhanVienDTO nhanVien = NhanVienBLL.dangNhapNhanVien(taiKhoan, matKhau);
+                if (nhanVien != null)
+                {
+                    formNhanVien formNhanVien = new formNhanVien();
+                    this.Hide();
+                    formNhanVien.Show();
 
+                }
+                else
+                {
+                    MessageBox.Show("Tài khoản đăng nhập hoặc mật khẩu không chính xác!\n\r Vui vòng đăng nhập lại.", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Bạn phải nhập đủ tài khoản và mật khẩu!", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

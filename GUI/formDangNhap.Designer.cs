@@ -82,6 +82,7 @@
             this.button1.Text = "   Tôi là nhân viên";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnQuanLy
             // 
@@ -109,6 +110,7 @@
             this.txtMatKhau.ShortcutsEnabled = false;
             this.txtMatKhau.Size = new System.Drawing.Size(280, 30);
             this.txtMatKhau.TabIndex = 2;
+            this.txtMatKhau.Text = "123";
             // 
             // txtTaiKhoan
             // 
@@ -116,6 +118,7 @@
             this.txtTaiKhoan.Name = "txtTaiKhoan";
             this.txtTaiKhoan.Size = new System.Drawing.Size(280, 30);
             this.txtTaiKhoan.TabIndex = 1;
+            this.txtTaiKhoan.Text = "admin_global";
             // 
             // label3
             // 

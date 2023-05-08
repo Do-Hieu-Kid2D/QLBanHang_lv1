@@ -52,10 +52,28 @@
     <Compile Include="formDangNhap.Designer.cs">
       <DependentUpon>formDangNhap.cs</DependentUpon>
     </Compile>
+    <Compile Include="formQuanLy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formQuanLy.Designer.cs">
+      <DependentUpon>formQuanLy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="formNhanVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formNhanVien.Designer.cs">
+      <DependentUpon>formNhanVien.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="formDangNhap.resx">
       <DependentUpon>formDangNhap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formQuanLy.resx">
+      <DependentUpon>formQuanLy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formNhanVien.resx">
+      <DependentUpon>formNhanVien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -88,6 +106,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\online-shop-ico.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{08b75f00-5326-4615-b8cc-e930bfb3b34b}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DTO\DTO.csproj">
+      <Project>{058c4d50-643a-4398-9b7d-697f5e3d6c84}</Project>
+      <Name>DTO</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
