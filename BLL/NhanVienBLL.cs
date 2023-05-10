@@ -1,7 +1,7 @@
 ﻿using DAL;
 using DTO;
 using System;
-
+using System.Data;
 
 namespace BLL
 {
@@ -11,6 +11,11 @@ namespace BLL
         {
             NhanVienDTO kq = NhanVienDAL.dangNhapNhanVien(tk, mk);
             return kq;
+        }
+
+        public static DataTable layAllNhanVien()
+        {
+            return NhanVienDAL.layAllNhanVien();
         }
     }
 }

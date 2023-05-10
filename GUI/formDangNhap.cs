@@ -25,6 +25,8 @@ namespace Project_CSDLBanHang
                 if(quanLy!=null)
                 {
                     formQuanLy formQuanLy = new formQuanLy(this);
+                    this.txtMatKhau.Text = "";
+                    this.txtTaiKhoan.Text = "";
                     this.Hide();
                     formQuanLy.Show();
                     
@@ -59,6 +61,8 @@ namespace Project_CSDLBanHang
                 if (nhanVien != null)
                 {
                     formNhanVien formNhanVien = new formNhanVien(this);
+                    this.txtMatKhau.Text = "";
+                    this.txtTaiKhoan.Text = "";
                     this.Hide();
                     formNhanVien.Show();
 
