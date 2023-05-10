@@ -33,22 +33,22 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.labChucNang = new System.Windows.Forms.Label();
             this.panBody = new System.Windows.Forms.Panel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.btnTaoHoaDon = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnNhanVien = new System.Windows.Forms.Button();
             this.btnThemKhachHang = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnDangXuat = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panBody.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -99,15 +99,6 @@
             this.panBody.Name = "panBody";
             this.panBody.Size = new System.Drawing.Size(685, 508);
             this.panBody.TabIndex = 0;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::GUI.Properties.Resources.Ha;
-            this.pictureBox2.Location = new System.Drawing.Point(100, 21);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(493, 319);
-            this.pictureBox2.TabIndex = 0;
-            this.pictureBox2.TabStop = false;
             // 
             // btnTaoHoaDon
             // 
@@ -198,6 +189,15 @@
             this.btnDangXuat.UseVisualStyleBackColor = false;
             this.btnDangXuat.Click += new System.EventHandler(this.btnDangXuat_Click);
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::GUI.Properties.Resources.store;
+            this.pictureBox2.Location = new System.Drawing.Point(148, 34);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(392, 319);
+            this.pictureBox2.TabIndex = 0;
+            this.pictureBox2.TabStop = false;
+            // 
             // formNhanVien
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -215,9 +215,9 @@
             this.splitContainer1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panBody.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -232,7 +232,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnThemKhachHang;
         private System.Windows.Forms.Panel panBody;
-        private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button btnNhanVien;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }
