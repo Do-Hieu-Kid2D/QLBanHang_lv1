@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="finGlobal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="finGlobal.Designer.cs">
+      <DependentUpon>finGlobal.cs</DependentUpon>
+    </Compile>
     <Compile Include="fLapHoaDon.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +84,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="finGlobal.resx">
+      <DependentUpon>finGlobal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="fLapHoaDon.resx">
       <DependentUpon>fLapHoaDon.cs</DependentUpon>
     </EmbeddedResource>
@@ -140,6 +149,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\dfd8dabcc3d01a8e43c1.jpg" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="report\print_template.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="report\store.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

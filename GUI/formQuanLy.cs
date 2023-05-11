@@ -1,8 +1,12 @@
 ﻿using BLL;
 using Project_CSDLBanHang;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
+using System.Security.Cryptography;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -10,6 +14,7 @@ namespace GUI
 {
     public partial class formQuanLy : Form
     {
+        string strCon = Properties.Settings.Default.strCon;
         formDangNhap fDN;
         public formQuanLy(formDangNhap dangNhap)
         {
@@ -21,6 +26,7 @@ namespace GUI
             txtTimKhachHang.ForeColor = Color.Gray; // Màu xám
             txtTimNhanVien.ForeColor = Color.Gray; // Màu xám
             txtTimDonHang.ForeColor = Color.Gray; // Màu xám
+            txtTimNCC.ForeColor = Color.Gray; // Màu xám
             this.dgvDataMH.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
 
         }
@@ -214,7 +220,7 @@ namespace GUI
             settingDgvNV();
 
         }
-        
+
         public void settingDgvNV()
         {
             // Bỏ cột mặc định dataGridView
@@ -242,6 +248,384 @@ namespace GUI
                 col.SortMode = DataGridViewColumnSortMode.NotSortable;
             }
             //dgvDataDH.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+        }
+
+        private void btnNCC_Click(object sender, EventArgs e)
+        {
+            hienThiAllNhaCC();
+        }
+        public void hienThiAllNhaCC()
+        {
+            DataTable data = NhaCungCapBLL.layAllNhaCC();
+            //dgvDataMH.Rows.Clear();
+            dgvDataNCC.DataSource = data;
+            settingDgvNCC();
+
+        }
+
+        private void settingDgvNCC()
+        {
+            // Bỏ cột mặc định dataGridView
+            dgvDataNCC.RowHeadersVisible = false;
+            // Thiết lập font đậm cho dòng header của DataGridView
+            dgvDataNCC.ColumnHeadersDefaultCellStyle.Font = new Font("Tahoma", 12, FontStyle.Bold);
+
+            dgvDataNCC.Columns[0].HeaderText = " Mã NCC ";
+            dgvDataNCC.Columns[1].HeaderText = "Tên NCC";
+            dgvDataNCC.Columns[2].HeaderText = "Địa chỉ";
+            dgvDataNCC.Columns[3].HeaderText = "Điện thoại";
+            dgvDataNCC.Columns[4].HeaderText = "Email";
+            dgvDataNCC.Columns[5].HeaderText = "Người đại diện";
+
+            foreach (DataGridViewColumn col in dgvDataNCC.Columns)
+            {
+                col.SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
+        }
+
+        private void txtTimNCC_MouseClick(object sender, MouseEventArgs e)
+        {
+            txtTimNCC.Text = "";
+            txtTimNCC.ForeColor = Color.Black; // Đen
+        }
+
+        private void btnInNCC_Click(object sender, EventArgs e)
+        {
+            DoPrintNCC();
+        }
+
+        string GenHtmlFromDgvNCC()
+        {
+            //chuẩn bị trước chuỗi html để hiển thị
+            //trang print: có sẵn cố định ko đổi: logo, tiêu đề
+            string html = "<table border=1 align='center' class='border-thin'>"; //đây là nội dung se hiển thị
+            //duyeetj dgv -> html
+            int stt = 0;
+            html += "<thead><tr>";
+            html += $"<th>STT</th>";
+            html += $"<th>Tên NCC</th>";
+            html += $"<th>Địa chỉ</th>";
+            html += $"<th>Điện thoại</th>";
+            html += $"<th>Email</th>";
+            html += $"<th>Người đại diện</th>";
+            html += "</tr></thead>";
+            html += "<tbody>";
+            foreach (DataGridViewRow r in dgvDataNCC.Rows)
+            {
+                html += "<tr>";
+                html += $"<td align=center>{++stt}</td>";
+                html += $"<td>{r.Cells[1].Value}</td>";
+                html += $"<td>{r.Cells[2].Value}</td>";
+                html += $"<td>{r.Cells[3].Value}</td>";
+                html += $"<td>{r.Cells[4].Value}</td>";
+                html += $"<td>{r.Cells[5].Value}</td>";
+                html += "</tr>";
+            }
+            html += "</tbody></table>";
+            return html;
+        }
+
+        finGlobal finNCC;
+        void DoPrintNCC()
+        {
+            string tieude_print;
+            //chuẩn bị trước chuỗi html để hiển thị
+            //trang print: có sẵn cố định ko đổi: logo, tiêu đề
+            string html = GenHtmlFromDgvNCC();
+
+            if (finNCC == null || finNCC.IsDisposed)
+                finNCC = new finGlobal();
+
+            tieude_print = txtPrintNCC.Text.ToUpper();
+            if (tieude_print == null || tieude_print == "")
+            {
+                tieude_print = "-- THÔNG TIN --";
+            }
+            finNCC.ShowPrint(tieude_print, html); //bố truyền html sang để hiển thị sang
+        }
+
+
+        private void btnInDSNhanVien_Click(object sender, EventArgs e)
+        {
+            DoPrintNV();
+        }
+
+        void DoPrintNV()
+        {
+            string tieude_print;
+            //chuẩn bị trước chuỗi html để hiển thị
+            //trang print: có sẵn cố định ko đổi: logo, tiêu đề
+            string html = GenHtmlFromDgvNV();
+
+            if (finNCC == null || finNCC.IsDisposed)
+                finNCC = new finGlobal();
+
+            tieude_print = txtPrintNhanVien.Text.ToUpper();
+            if (tieude_print == null || tieude_print == "")
+            {
+                tieude_print = "-- THÔNG TIN --";
+            }
+            finNCC.ShowPrint(tieude_print, html); //bố truyền html sang để hiển thị sang
+        }
+        string GenHtmlFromDgvNV()
+        {
+            //chuẩn bị trước chuỗi html để hiển thị
+            //trang print: có sẵn cố định ko đổi: logo, tiêu đề
+            string html = "<table border=1 align='center' class='border-thin'>"; //đây là nội dung se hiển thị
+            //duyeetj dgv -> html
+            int stt = 0;
+            html += "<thead><tr>";
+            html += $"<th>STT</th>";
+            html += $"<th>Họ và tên</th>";
+            html += $"<th>Giới tính</th>";
+            html += $"<th>Ngày sinh</th>";
+            html += $"<th>Điện thoại</th>";
+            html += $"<th>Lương CB</th>";
+            html += $"<th>Phụ cấp</th>";
+            html += $"<th>Địa chỉ</th>";
+            html += "</tr></thead>";
+            html += "<tbody>";
+            foreach (DataGridViewRow r in dgvDataNV.Rows)
+            {
+                html += "<tr>";
+                html += $"<td align=center>{++stt}</td>";
+                html += $"<td>{r.Cells[1].Value}</td>";   // họ tên
+                html += $"<td text-align: center;>{r.Cells[2].Value}</td>"; // giới tính
+                html += $"<td align=center>{DateTime.Parse(r.Cells[3].Value.ToString()).ToString("dd/MM/yyyy")}</td>";// ngày sinh
+                html += $"<td>{r.Cells[5].Value}</td>"; // dienj thọai
+                string temp = r.Cells[6].Value.ToString();
+                string[] arr = temp.Split(',');
+                int luongSO = Convert.ToInt32(arr[0]);
+                string luong = string.Format("{0:#,###}", luongSO);
+                html += $"<td>{luong}</td>";  // luong
+                string temp2 = r.Cells[7].Value.ToString();
+                string[] arr2 = temp2.Split(',');
+                int pc_ = Convert.ToInt32(arr2[0]);
+                string pc = string.Format("{0:#,###}", pc_);
+                html += $"<td>{pc}</td>";  // phu cap
+                html += $"<td>{r.Cells[8].Value}</td>"; // chia chi
+                html += "</tr>";
+            }
+            html += "</tbody></table>";
+            return html;
+        }
+
+        private void btnDSDonHang_Click(object sender, EventArgs e)
+        {
+            DoPrintDH();
+        }
+
+        public void DoPrintDH()
+        {
+            string tieude_print;
+            //chuẩn bị trước chuỗi html để hiển thị
+            //trang print: có sẵn cố định ko đổi: logo, tiêu đề
+            string html = GenHtmlFromDgvDH();
+
+            if (finNCC == null || finNCC.IsDisposed)
+                finNCC = new finGlobal();
+
+            tieude_print = txtDSDonHang.Text.ToUpper();
+            if (tieude_print == null || tieude_print == "")
+            {
+                tieude_print = "-- THÔNG TIN --";
+            }
+            finNCC.ShowPrint(tieude_print, html); //bố truyền html sang để hiển thị sang
+        }
+
+        private string GenHtmlFromDgvDH()
+        {
+            //chuẩn bị trước chuỗi html để hiển thị
+            //trang print: có sẵn cố định ko đổi: logo, tiêu đề
+            string html = "<table border=1 align='center' class='border-thin'>"; //đây là nội dung se hiển thị
+            //duyeetj dgv -> html
+            int stt = 0;
+            html += "<thead><tr>";
+            html += $"<th>STT</th>";
+            html += $"<th>Số đơn hàng</th>";
+            html += $"<th>Mã KH</th>";
+            html += $"<th>Mã NV</th>";
+            html += $"<th>Ngày đặt</th>";
+            html += $"<th>Ngày giao</th>";
+            html += $"<th>Thanh toán</th>";
+            html += $"<th>Địa chỉ giao hàng</th>";
+            html += "</tr></thead>";
+            html += "<tbody>";
+            foreach (DataGridViewRow r in dgvDataDH.Rows)
+            {
+                html += "<tr>";
+                html += $"<td align=center>{++stt}</td>";
+                html += $"<td>{r.Cells[0].Value}</td>";
+                html += $"<td>{r.Cells[1].Value}</td>";
+                html += $"<td>{r.Cells[2].Value}</td>";
+                html += $"<td align=center>{DateTime.Parse(r.Cells[3].Value.ToString()).ToString("dd/MM/yyyy")}</td>";
+                html += $"<td align=center>{DateTime.Parse(r.Cells[4].Value.ToString()).ToString("dd/MM/yyyy")}</td>";
+                html += $"<td>{r.Cells[5].Value}</td>";
+                html += $"<td>{r.Cells[6].Value}</td>";
+                html += "</tr>";
+            }
+            html += "</tbody></table>";
+            return html;
+        }
+
+        Dictionary<string, string> dicLoaiHang;
+        private void btnIn_Click(object sender, EventArgs e)
+        {
+            DoPrintMH();
+        }
+
+        public Dictionary<string, string> layDicLoaiHang()
+        {
+            string query = "select * from LoaiHang;";
+
+            using (SqlConnection sqlCon = new SqlConnection(strCon))
+            {
+                try
+                {
+                    Dictionary<string, string> dicLoaiHang = new Dictionary<string, string>();
+                    sqlCon.Open();
+
+                    // Thực hiện các câu truy vấn và xử lý dữ liệu
+                    SqlCommand cmd = sqlCon.CreateCommand();
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = query;
+
+                    SqlDataReader sdr = cmd.ExecuteReader();
+                    // Tạo đối tượng DataTable để lưu trữ dữ liệu trả về
+                    while (sdr.Read())
+                    {
+                        string key = sdr.GetString(0);
+                        string value = sdr.GetString(1);
+                        dicLoaiHang.Add(key, value);
+                    }
+                    return dicLoaiHang;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                    return null;
+                }
+
+            }
+        }
+
+        public void DoPrintMH()
+        {
+            string tieude_print;
+            //chuẩn bị trước chuỗi html để hiển thị
+            //trang print: có sẵn cố định ko đổi: logo, tiêu đề
+            string html = GenHtmlFromDgvMH();
+
+            if (finNCC == null || finNCC.IsDisposed)
+                finNCC = new finGlobal();
+
+            tieude_print = txtMatHang.Text.ToUpper();
+            if (tieude_print == null || tieude_print == "")
+            {
+                tieude_print = "-- THÔNG TIN --";
+            }
+            finNCC.ShowPrint(tieude_print, html); //bố truyền html sang để hiển thị sang
+        }
+
+        public string GenHtmlFromDgvMH()
+        {
+            //chuẩn bị trước chuỗi html để hiển thị
+            //trang print: có sẵn cố định ko đổi: logo, tiêu đề
+            string html = "<table border=1 align='center' class='border-thin'>"; //đây là nội dung se hiển thị
+            //duyeetj dgv -> html
+            int stt = 0;
+            html += "<thead><tr>";
+            html += $"<th>STT</th>";
+            html += $"<th>Mã hàng</th>";
+            html += $"<th>Tên hàng</th>";
+            html += $"<th>Mã NCC</th>";
+            html += $"<th>Mã LH</th>";
+            html += $"<th>Số lượng</th>";
+            html += $"<th>ĐV tính</th>";
+            html += $"<th>Giá nhập</th>";
+            html += $"<th>Giá bán</th>";
+            html += "</tr></thead>";
+            html += "<tbody>";
+            foreach (DataGridViewRow r in dgvDataMH.Rows)
+            {
+                html += "<tr>";
+                html += $"<td align=center>{++stt}</td>";
+                html += $"<td>{r.Cells[0].Value}</td>";
+                html += $"<td>{r.Cells[1].Value}</td>";
+                html += $"<td>{r.Cells[2].Value}</td>";
+                html += $"<td>{r.Cells[3].Value}</td>";
+                html += $"<td>{r.Cells[4].Value}</td>";
+                html += $"<td>{r.Cells[5].Value}</td>";
+                string temp = r.Cells[6].Value.ToString();
+                string[] arr = temp.Split(',');
+                int giaNhap = Convert.ToInt32(arr[0]);
+                string gia = string.Format("{0:#,###}", giaNhap);
+                html += $"<td>{gia}</td>";
+                string temp2 = r.Cells[7].Value.ToString();
+                string[] arr2 = temp2.Split(',');
+                int giaBan = Convert.ToInt32(arr2[0]);
+                string giab = string.Format("{0:#,###}", giaBan);
+                html += $"<td>{giab}</td>";
+                html += "</tr>";
+            }
+            html += "</tbody></table>";
+            return html;
+        }
+
+        private void btnInDSKhachHang_Click(object sender, EventArgs e)
+        {
+            DoPrintKH();
+        }
+
+        public void DoPrintKH()
+        {
+            string tieude_print;
+            //chuẩn bị trước chuỗi html để hiển thị
+            //trang print: có sẵn cố định ko đổi: logo, tiêu đề
+            string html = GenHtmlFromDgvKH();
+
+            if (finNCC == null || finNCC.IsDisposed)
+                finNCC = new finGlobal();
+
+            tieude_print = txtKhachHang.Text.ToUpper();
+            if (tieude_print == null || tieude_print == "")
+            {
+                tieude_print = "-- THÔNG TIN --";
+            }
+            finNCC.ShowPrint(tieude_print, html); //bố truyền html sang để hiển thị sang
+        }
+
+        public string GenHtmlFromDgvKH()
+        {
+            //chuẩn bị trước chuỗi html để hiển thị
+            //trang print: có sẵn cố định ko đổi: logo, tiêu đề
+            string html = "<table border=1 align='center' class='border-thin'>"; //đây là nội dung se hiển thị
+            //duyeetj dgv -> html
+            int stt = 0;
+            html += "<thead><tr>";
+            html += $"<th>STT</th>";
+            html += $"<th>Tên KH</th>";
+            html += $"<th>Giới tính</th>";
+            html += $"<th>Tên CTy</th>";
+            html += $"<th>Điện thoại</th>";
+            html += $"<th>Email</th>";
+            html += $"<th>Địa chỉ</th>";
+            html += "</tr></thead>";
+            html += "<tbody>";
+            foreach (DataGridViewRow r in dgvDataKH.Rows)
+            {
+                html += "<tr>";
+                html += $"<td align=center>{++stt}</td>";
+                html += $"<td>{r.Cells[1].Value}</td>";
+                html += $"<td>{r.Cells[2].Value}</td>";
+                html += $"<td>{r.Cells[3].Value}</td>";
+                html += $"<td>{r.Cells[6].Value}</td>";
+                html += $"<td>{r.Cells[5].Value}</td>";
+                html += $"<td>{r.Cells[4].Value}</td>";
+                html += "</tr>";
+            }
+            html += "</tbody></table>";
+            return html;
         }
     }
 }

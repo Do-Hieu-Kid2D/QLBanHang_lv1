@@ -11,7 +11,7 @@ namespace DAL
 {
     public class MatHangDAL
     {
-        static string strCon = @"Data Source=DKID\SEVERTEN;Initial Catalog=lastNha;Integrated Security=True";
+        static string strCon = Properties.Settings.Default.strCon;
 
         public static DataTable layALLMatHang()
         {

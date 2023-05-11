@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Print</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <style>
+
+        table.border-thin th, table.border-thin td {
+            border: 1px solid black;
+            padding-left: 5px;
+            padding-right: 5px;
+            padding-top: 2px;
+            padding-bottom: 2px;
+        }
+
+        table.border-thin {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-size: 17px;
+        }
+
+        #kq {
+            width: 100%;
+        }
+
+        .can_giua {
+            width: 100%;
+            text-align: center;
+        }
+
+        #time {
+            width: 100%;
+            text-align: right;
+            margin-top: 10px;
+        }
+
+        
+
+        @media print {
+            .not-print {
+                display: none;
+            }
+        }
+    </style>
+    <style type="text/css">
+        @page {
+            size: A4;
+            margin:20px;
+        }
+        @media print {
+            body, page[size="A4"] {
+                box-shadow:0;
+            }
+        }
+    </style>
+    <script>
+        document.onselectstart = function () { return false; }
+        document.onmousedown = function () { return false; }
+        document.ondragstart = function () { return false; }
+        function Item(id) {
+            return document.getElementById(id);
+        }
+        function ShowTable(html, tieude, time) {
+            Item('kq').innerHTML = html; //hiển thị bảng sv
+            Item('tieude').innerHTML = tieude;
+            Item('time').innerHTML = time;
+
+            //window.external là cái C# trang bị thêm cho webBrowser1
+            //bỏi dòng lệnh  webBrowser1.ObjectForScripting = this;
+            //nên trong js mới dùng đc dòng dưới
+
+            //gọi ngược lại c#
+            window.external.Print_Callback(); //hàm trong c#, đc gọi từ JS
+        }
+    </script>
+</head>
+<body>
+    <div height ="60px"></div> <br />
+    <table width="100%">
+        <tr>
+            <td valign="middle" width="100">
+                <img src="store.png" margin-left ="40px"  width="100"  />
+            </td>
+            <td valign="middle">
+                <h1 class="can_giua" id="tieude"></h1>
+            </td>
+            <td valign="middle" width="100">
+            </td>
+        </tr>
+    </table>
+    <div id="kq"></div>
+    <div id="time"></div>
+</body>
+</html>
