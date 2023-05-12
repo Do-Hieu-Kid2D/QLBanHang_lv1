@@ -10,10 +10,10 @@ namespace BLL
 {
     public class KhachHangBLL
     {
-        public static DataTable layALLKhachHang()
+        public static DataTable layALLKhachHang(string dk)
         {
             DataTable kq = new DataTable();
-            kq = KhachHangDAL.layALLKhachHang();
+            kq = KhachHangDAL.layALLKhachHang(dk);
             return kq;
         }
     }

@@ -11,9 +11,17 @@ namespace DAL
     public class NhaCungCapDAL
     {
         static string strCon = Properties.Settings.Default.strCon;
-        public static DataTable layAllNhaCC()
+        public static DataTable layAllNhaCC(string dk)
         {
-            string query = "select * from NHACUNGCAP;";
+            string query;
+            if (dk == "")
+            {
+            query = "select * from NHACUNGCAP;";
+            }
+            else
+            {
+                query = $"select * from NHACUNGCAP where tenNhaCC like '%{dk}%';";
+            }
             // Khởi tạo đối tượng SqlConnection
             using (SqlConnection connection = new SqlConnection(strCon))
             {

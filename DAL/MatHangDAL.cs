@@ -13,9 +13,17 @@ namespace DAL
     {
         static string strCon = Properties.Settings.Default.strCon;
 
-        public static DataTable layALLMatHang()
+        public static DataTable layALLMatHang(string dk)
         {
-            string query = "select * from MATHANG;";
+            string query;
+            if (dk == "")
+            {
+                query = $"select * from MATHANG;";
+            }
+            else
+            {
+                query = $"select * from MATHANG where tenHang like '%{dk}%';";
+            }
 
             using (SqlConnection sqlCon = new SqlConnection(strCon))
             {
@@ -39,7 +47,7 @@ namespace DAL
                     Console.WriteLine("Error: " + ex.Message);
                     return null;
                 }
-                
+
             }
         }
 

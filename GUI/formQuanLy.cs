@@ -50,10 +50,11 @@ namespace GUI
 
         private void formQuanLy_Load(object sender, EventArgs e)
         {
-            //hienThiALLMatHang();
-            //hienThiALLKhachHang();
-            //hienThiAllDonHang();
-            //hienThiAllNhanVien();
+            hienThiALLMatHang("ng");
+            hienThiALLKhachHang("hi");
+            hienThiAllDonHang("hcm");
+            hienThiAllNhanVien();
+            hienThiAllNhaCC("a");
         }
 
         public void settingDgvMH()
@@ -101,9 +102,9 @@ namespace GUI
 
         }
 
-        public void hienThiALLMatHang()
+        public void hienThiALLMatHang(string dk)
         {
-            DataTable data = MatHangBLL.layALLMatHang();
+            DataTable data = MatHangBLL.layALLMatHang(dk);
             //dgvDataMH.Rows.Clear();
             dgvDataMH.DataSource = data;
             settingDgvMH();
@@ -111,17 +112,17 @@ namespace GUI
 
         private void btnALlHang_Click(object sender, EventArgs e)
         {
-            hienThiALLMatHang();
+            hienThiALLMatHang("");
         }
 
         private void btnAllKhachHang_Click(object sender, EventArgs e)
         {
-            hienThiALLKhachHang();
+            hienThiALLKhachHang("");
         }
 
-        public void hienThiALLKhachHang()
+        public void hienThiALLKhachHang(string dk)
         {
-            DataTable data = KhachHangBLL.layALLKhachHang();
+            DataTable data = KhachHangBLL.layALLKhachHang(dk);
             //dgvDataMH.Rows.Clear();
             dgvDataKH.DataSource = data;
             settingDgvKH();
@@ -150,12 +151,14 @@ namespace GUI
 
         private void btnDonHang_Click(object sender, EventArgs e)
         {
-            hienThiAllDonHang();
+            hienThiAllDonHang("");
         }
 
-        public void hienThiAllDonHang()
+        public void hienThiAllDonHang(string dk)
         {
-            DataTable data = DonHangBLL.layALLDonHang();
+            DataTable data = DonHangBLL.layALLDonHang(dk);
+            //if (data == null)
+            //    MessageBox.Show("Ngu");
             //dgvDataMH.Rows.Clear();
             dgvDataDH.DataSource = data;
             settingDgvDH();
@@ -252,11 +255,11 @@ namespace GUI
 
         private void btnNCC_Click(object sender, EventArgs e)
         {
-            hienThiAllNhaCC();
+            hienThiAllNhaCC("");
         }
-        public void hienThiAllNhaCC()
+        public void hienThiAllNhaCC(string dk)
         {
-            DataTable data = NhaCungCapBLL.layAllNhaCC();
+            DataTable data = NhaCungCapBLL.layAllNhaCC(dk);
             //dgvDataMH.Rows.Clear();
             dgvDataNCC.DataSource = data;
             settingDgvNCC();
@@ -626,6 +629,26 @@ namespace GUI
             }
             html += "</tbody></table>";
             return html;
+        }
+
+        private void btnTim_Click(object sender, EventArgs e)
+        {
+            hienThiALLMatHang(txtTimMatHang.Text.Trim());
+        }
+
+        private void btnTimKiemKhachHang_Click(object sender, EventArgs e)
+        {
+            hienThiALLKhachHang(txtKhachHang.Text.Trim());
+        }
+
+        private void btnTKDonHang_Click(object sender, EventArgs e)
+        {
+            hienThiAllDonHang(txtTimDonHang.Text.Trim());
+        }
+
+        private void btnTimNCC_Click(object sender, EventArgs e)
+        {
+            hienThiAllNhaCC(txtTimNCC.Text.Trim());
         }
     }
 }

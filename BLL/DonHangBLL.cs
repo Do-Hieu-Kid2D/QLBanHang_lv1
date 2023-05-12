@@ -10,10 +10,10 @@ namespace BLL
 {
     public class DonHangBLL
     {
-        public static DataTable layALLDonHang()
+        public static DataTable layALLDonHang(string dk)
         {
             DataTable kq = new DataTable();
-            kq = DonHangDAL.layALLDonHang();
+            kq = DonHangDAL.layALLDonHang(dk);
             return kq;
         }
     }

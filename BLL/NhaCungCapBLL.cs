@@ -11,9 +11,9 @@ namespace BLL
     public class NhaCungCapBLL
     {
         
-        public static DataTable layAllNhaCC()
+        public static DataTable layAllNhaCC(string dk)
         {
-            return NhaCungCapDAL.layAllNhaCC();
+            return NhaCungCapDAL.layAllNhaCC(dk);
         }
     }
 }
