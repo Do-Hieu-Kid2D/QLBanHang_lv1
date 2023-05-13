@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
 using System.Security.Cryptography;
 using System.Windows.Forms;
@@ -695,7 +696,7 @@ namespace GUI
             {
                 if (XoaNCC() == 1)
                 {
-                    MessageBox.Show("Đã xóa Nhà cung cấp!","Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Đã xóa Nhà cung cấp!", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     hienThiAllNhaCC("");
                 }
                 else
@@ -861,7 +862,7 @@ namespace GUI
             {
                 if (XoaDH() == 1)
                 {
-                    MessageBox.Show("Đã xóa Đơn hàng!","Thông báo!",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    MessageBox.Show("Đã xóa Đơn hàng!", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     hienThiAllDonHang("");
                 }
                 else
@@ -869,6 +870,12 @@ namespace GUI
                     MessageBox.Show("Chưa xóa Đơn hàng!");
                 }
             }
+        }
+
+        private void btnHoZo_Click(object sender, EventArgs e)
+        {
+            PlaySound.playNeedText(txtHoZo.Text);
+
         }
     }
 }
