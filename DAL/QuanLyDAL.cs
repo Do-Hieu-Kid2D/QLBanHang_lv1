@@ -10,7 +10,7 @@ namespace DAL
 {
     public class QuanLyDAL
     {
-        static string strCon = @"Data Source=DKID\SEVERTEN;Initial Catalog=Cuoi;Integrated Security=True";
+        static string strCon = Properties.Settings.Default.strCon;
 
         public static QuanLyDTO dangNhapQuanLy(string tk, string mk)
         {

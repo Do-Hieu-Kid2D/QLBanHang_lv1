@@ -16,5 +16,10 @@ namespace BLL
             kq = DonHangDAL.layALLDonHang(dk);
             return kq;
         }
+
+        public static int xoaDH(string maDHXoa)
+        {
+            return DonHangDAL.xoaDH(maDHXoa);
+        }
     }
 }

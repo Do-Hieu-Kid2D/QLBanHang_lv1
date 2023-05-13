@@ -15,5 +15,10 @@ namespace BLL
         {
             return NhaCungCapDAL.layAllNhaCC(dk);
         }
+
+        public static int xoaNCC(string maNCCXoa)
+        {
+            return NhaCungCapDAL.xoaNCC(maNCCXoa);
+        }
     }
 }

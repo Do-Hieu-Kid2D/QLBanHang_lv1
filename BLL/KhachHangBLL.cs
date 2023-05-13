@@ -16,5 +16,10 @@ namespace BLL
             kq = KhachHangDAL.layALLKhachHang(dk);
             return kq;
         }
+
+        public static int xoaKH(string maKHXoa)
+        {
+            return KhachHangDAL.xoaKH(maKHXoa);
+        }
     }
 }

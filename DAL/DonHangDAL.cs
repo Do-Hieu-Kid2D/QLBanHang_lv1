@@ -10,9 +10,9 @@ namespace DAL
 {
     public class DonHangDAL
     {
+        static string strCon = Properties.Settings.Default.strCon;
         public static DataTable layALLDonHang(string dk)
         {
-            string strCon = Properties.Settings.Default.strCon;
             if (dk == "")
             {
                 string query = "select sohoadon,makhachhang,manhanvien,ngaydathang,ngayGiaoHang, mahinhThucThanhToan,diaChigiaoHang from DONDATHANG;";
@@ -72,5 +72,25 @@ namespace DAL
                 }
             }
         }
+
+        public static int xoaDH(string maDHXoa)
+        {
+            string query = "xoaDonHang";
+            using (SqlConnection sqlCon = new SqlConnection(strCon))
+            {
+                sqlCon.Open();
+
+                using (SqlCommand cmd = sqlCon.CreateCommand())
+                {
+                    cmd.CommandText = query;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@soHoaDon", SqlDbType.NVarChar).Value = maDHXoa;
+                    return cmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
+
 }
+
+

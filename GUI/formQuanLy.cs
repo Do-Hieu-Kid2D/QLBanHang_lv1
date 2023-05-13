@@ -1,4 +1,5 @@
 ﻿using BLL;
+using DTO;
 using Project_CSDLBanHang;
 using System;
 using System.Collections;
@@ -50,11 +51,11 @@ namespace GUI
 
         private void formQuanLy_Load(object sender, EventArgs e)
         {
-            hienThiALLMatHang("ng");
-            hienThiALLKhachHang("hi");
-            hienThiAllDonHang("hcm");
+            hienThiALLMatHang("");
+            hienThiALLKhachHang("");
+            hienThiAllDonHang("");
             hienThiAllNhanVien();
-            hienThiAllNhaCC("a");
+            hienThiAllNhaCC("");
         }
 
         public void settingDgvMH()
@@ -105,8 +106,14 @@ namespace GUI
         public void hienThiALLMatHang(string dk)
         {
             DataTable data = MatHangBLL.layALLMatHang(dk);
+            if (data.Rows.Count == 0)
+            {
+                MessageBox.Show("Không có bản ghi nào phù hợp!", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             //dgvDataMH.Rows.Clear();
             dgvDataMH.DataSource = data;
+            dgvDataMH.Rows[0].Selected = false;
             settingDgvMH();
         }
 
@@ -123,8 +130,14 @@ namespace GUI
         public void hienThiALLKhachHang(string dk)
         {
             DataTable data = KhachHangBLL.layALLKhachHang(dk);
+            if (data.Rows.Count == 0)
+            {
+                MessageBox.Show("Không có bản ghi nào phù hợp!", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             //dgvDataMH.Rows.Clear();
             dgvDataKH.DataSource = data;
+            dgvDataKH.Rows[0].Selected = false;
             settingDgvKH();
         }
 
@@ -157,10 +170,14 @@ namespace GUI
         public void hienThiAllDonHang(string dk)
         {
             DataTable data = DonHangBLL.layALLDonHang(dk);
-            //if (data == null)
-            //    MessageBox.Show("Ngu");
             //dgvDataMH.Rows.Clear();
+            if (data.Rows.Count == 0)
+            {
+                MessageBox.Show("Không có bản ghi nào phù hợp!", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             dgvDataDH.DataSource = data;
+            dgvDataDH.Rows[0].Selected = false;
             settingDgvDH();
         }
 
@@ -184,6 +201,7 @@ namespace GUI
             {
                 col.SortMode = DataGridViewColumnSortMode.NotSortable;
             }
+
         }
 
         private void txtTimNhanVien_TextChanged(object sender, EventArgs e)
@@ -219,8 +237,14 @@ namespace GUI
         {
             DataTable data = NhanVienBLL.layAllNhanVien();
             //dgvDataMH.Rows.Clear();
+            if (data.Rows.Count == 0)
+            {
+                MessageBox.Show("Không có bản ghi nào phù hợp!", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             dgvDataNV.DataSource = data;
             settingDgvNV();
+            dgvDataNV.Rows[0].Selected = false;
 
         }
 
@@ -261,7 +285,13 @@ namespace GUI
         {
             DataTable data = NhaCungCapBLL.layAllNhaCC(dk);
             //dgvDataMH.Rows.Clear();
+            if (data.Rows.Count == 0)
+            {
+                MessageBox.Show("Không có bản ghi nào phù hợp!", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             dgvDataNCC.DataSource = data;
+            dgvDataNCC.Rows[0].Selected = false;
             settingDgvNCC();
 
         }
@@ -638,7 +668,7 @@ namespace GUI
 
         private void btnTimKiemKhachHang_Click(object sender, EventArgs e)
         {
-            hienThiALLKhachHang(txtKhachHang.Text.Trim());
+            hienThiALLKhachHang(txtTimKhachHang.Text.Trim());
         }
 
         private void btnTKDonHang_Click(object sender, EventArgs e)
@@ -649,6 +679,196 @@ namespace GUI
         private void btnTimNCC_Click(object sender, EventArgs e)
         {
             hienThiAllNhaCC(txtTimNCC.Text.Trim());
+        }
+
+        private void btnXoaNCC_Click_1(object sender, EventArgs e)
+        {
+            if (dgvDataNCC.SelectedRows.Count <= 0)
+            {
+                MessageBox.Show("Cần chọn đối tượng muốn xóa trên bảng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            DialogResult chon = MessageBox.Show("Bạn chắc chắn muốn xóa Nhà cung cấp này?", "Thông báo!", MessageBoxButtons.YesNo,
+            MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            if (chon == DialogResult.Yes)
+            {
+                if (XoaNCC() == 1)
+                {
+                    MessageBox.Show("Đã xóa Nhà cung cấp!","Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    hienThiAllNhaCC("");
+                }
+                else
+                {
+                    MessageBox.Show("Chưa xóa Nhà cung cấp!");
+                }
+            }
+        }
+        private int XoaNCC()
+        {
+            string maNCCXoa = layMaNCCDangChon();
+            return NhaCungCapBLL.xoaNCC(maNCCXoa);
+        }
+        string layMaNCCDangChon()
+        {
+
+            if (dgvDataNCC.SelectedRows.Count > 0)
+            {
+                string maNCC = (string)(dgvDataNCC.SelectedRows[0].Cells[0].Value);
+                return maNCC;
+            }
+            return null;
+        }
+
+        private void btnXoaNhanVien_Click(object sender, EventArgs e)
+        {
+            if (dgvDataNV.SelectedRows.Count <= 0)
+            {
+                MessageBox.Show("Cần chọn đối tượng muốn xóa trên bảng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            DialogResult chon = MessageBox.Show("Bạn chắc chắn muốn xóa Nhân viên này?", "Thông báo!", MessageBoxButtons.YesNo,
+            MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            if (chon == DialogResult.Yes)
+            {
+                if (XoaNV() == 1)
+                {
+                    MessageBox.Show("Đã xóa Nhân viên!", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    hienThiAllNhanVien();
+                }
+                else
+                {
+                    MessageBox.Show("Chưa xóa Nhân viên!");
+                }
+            }
+        }
+
+        private int XoaNV()
+        {
+            string maNVXoa = layMaNVDangChon();
+            return NhanVienBLL.xoaNV(maNVXoa);
+        }
+
+        private string layMaNVDangChon()
+        {
+
+            if (dgvDataNV.SelectedRows.Count > 0)
+            {
+                string maNV = (string)(dgvDataNV.SelectedRows[0].Cells[0].Value);
+                return maNV;
+            }
+            return null;
+        }
+
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            if (dgvDataMH.SelectedRows.Count <= 0)
+            {
+                MessageBox.Show("Cần chọn đối tượng muốn xóa trên bảng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            DialogResult chon = MessageBox.Show("Bạn chắc chắn muốn xóa Mặt hàng này?", "Thông báo!", MessageBoxButtons.YesNo,
+            MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            if (chon == DialogResult.Yes)
+            {
+                if (XoaMH() == 1)
+                {
+                    MessageBox.Show("Đã xóa Mặt hàng!", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    hienThiALLMatHang("");
+                }
+                else
+                {
+                    MessageBox.Show("Chưa xóa Mặt hàng!");
+                }
+            }
+        }
+
+        private int XoaMH()
+        {
+            string maMHXoa = layMaMHDangChon();
+            return MatHangBLL.xoaMH(maMHXoa);
+        }
+
+        private string layMaMHDangChon()
+        {
+            if (dgvDataMH.SelectedRows.Count > 0)
+            {
+                string maMH = (string)(dgvDataMH.SelectedRows[0].Cells[0].Value);
+                return maMH;
+            }
+            return null;
+        }
+
+        private void btnXoaKhachHang_Click(object sender, EventArgs e)
+        {
+            if (dgvDataKH.SelectedRows.Count <= 0)
+            {
+                MessageBox.Show("Cần chọn đối tượng muốn xóa trên bảng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            DialogResult chon = MessageBox.Show("Bạn chắc chắn muốn xóa Khách hàng này?", "Thông báo!", MessageBoxButtons.YesNo,
+            MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            if (chon == DialogResult.Yes)
+            {
+                if (XoaKH() == 1)
+                {
+                    MessageBox.Show("Đã xóa Khách hàng!", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    hienThiALLKhachHang("");
+                }
+                else
+                {
+                    MessageBox.Show("Chưa xóa Khách hàng!");
+                }
+            }
+        }
+
+        private int XoaDH()
+        {
+            string maDHXoa = layMaDHDangChon();
+            return DonHangBLL.xoaDH(maDHXoa);
+        }
+
+        private string layMaDHDangChon()
+        {
+            return dgvDataDH.SelectedRows[0].Cells[0].Value.ToString();
+        }
+
+        private int XoaKH()
+        {
+            string maKHXoa = layMaKHDangChon();
+            return KhachHangBLL.xoaKH(maKHXoa);
+        }
+
+        private string layMaKHDangChon()
+        {
+            return dgvDataKH.SelectedRows[0].Cells[0].Value.ToString();
+        }
+
+        private void btnXoaDonHang_Click(object sender, EventArgs e)
+        {
+            if (dgvDataDH.SelectedRows.Count <= 0)
+            {
+                MessageBox.Show("Cần chọn đối tượng muốn xóa trên bảng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            DialogResult chon = MessageBox.Show("Bạn chắc chắn muốn xóa Đơn hàng này?", "Thông báo!", MessageBoxButtons.YesNo,
+            MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            if (chon == DialogResult.Yes)
+            {
+                if (XoaDH() == 1)
+                {
+                    MessageBox.Show("Đã xóa Đơn hàng!","Thông báo!",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    hienThiAllDonHang("");
+                }
+                else
+                {
+                    MessageBox.Show("Chưa xóa Đơn hàng!");
+                }
+            }
         }
     }
 }

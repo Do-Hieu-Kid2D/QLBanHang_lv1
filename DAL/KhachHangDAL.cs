@@ -47,5 +47,19 @@ namespace DAL
             }
 
         }
+
+        public static int xoaKH(string maKHXoa)
+        {
+            string query = $"delete from KHACHHANG where maKhachHang = '{maKHXoa}';";
+            using(SqlConnection connection = new SqlConnection(strCon))
+            {
+                connection.Open();
+                using(SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.CommandType = CommandType.Text;
+                    return command.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

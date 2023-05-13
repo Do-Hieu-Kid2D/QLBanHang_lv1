@@ -16,7 +16,7 @@ namespace DAL
             string query;
             if (dk == "")
             {
-            query = "select * from NHACUNGCAP;";
+                query = "select * from NHACUNGCAP;";
             }
             else
             {
@@ -28,12 +28,13 @@ namespace DAL
                 // Khởi tạo đối tượng SqlCommand và thiết lập tên stored procedure và kết nối
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    
+
                     command.CommandType = CommandType.Text;
                     // Mở kết nối đến SQL Server
                     connection.Open();
 
                     DataTable dataTable = new DataTable();
+                    //dataTable = null;
                     // Thực thi lệnh SQL và lấy kết quả trả về
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
@@ -43,7 +44,26 @@ namespace DAL
                 }
             }
 
-            }
+        }
 
+        public static int xoaNCC(string maNCCXoa)
+        {
+            string query = $"delete NHACUNGCAP where maNhaCC = '{maNCCXoa}';";
+
+            // Khởi tạo đối tượng SqlConnection
+            using (SqlConnection connection = new SqlConnection(strCon))
+            {
+                // Khởi tạo đối tượng SqlCommand và thiết lập tên stored procedure và kết nối
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+
+                    command.CommandType = CommandType.Text;
+                    // Mở kết nối đến SQL Server
+                    connection.Open();
+
+                    return command.ExecuteNonQuery();
+                }
+            }
+        } 
     }
 }

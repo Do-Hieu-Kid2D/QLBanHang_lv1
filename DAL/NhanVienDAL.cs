@@ -17,11 +17,11 @@ namespace DAL
         {
             NhanVienDTO kq = null;
             string query = "select * from NHANVIEN where taiKhoan = '" + tk + "' and matKhau ='" + mk + "';";
-            
+
             using (SqlConnection sqlCon = new SqlConnection(strCon))
             {
                 try
-                { 
+                {
                     sqlCon.Open();
 
                     // Thực hiện các câu truy vấn và xử lý dữ liệu
@@ -41,7 +41,7 @@ namespace DAL
                         decimal luong = reader.GetDecimal(7);
                         decimal phuCap = reader.GetDecimal(8);
 
-                        kq = new NhanVienDTO(ma,hoTen,gioiTinh,ngaySinh,ngayLamViec,diaChi,dienThoai,luong,phuCap,tk,mk);
+                        kq = new NhanVienDTO(ma, hoTen, gioiTinh, ngaySinh, ngayLamViec, diaChi, dienThoai, luong, phuCap, tk, mk);
                     }
                 }
                 catch (Exception ex)
@@ -78,6 +78,18 @@ namespace DAL
             }
         }
 
-
+        public static int xoaNV(string maNVXoa)
+        {
+            string query = $"delete NHANVIEN where maNhanVien = '{maNVXoa}'";
+            using (SqlConnection connection = new SqlConnection(strCon))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+                    command.CommandType = CommandType.Text;
+                    return command.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

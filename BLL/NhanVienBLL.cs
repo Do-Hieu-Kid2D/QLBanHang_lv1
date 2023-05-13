@@ -17,5 +17,10 @@ namespace BLL
         {
             return NhanVienDAL.layAllNhanVien();
         }
+
+        public static int xoaNV(string maNVXoa)
+        {
+            return NhanVienDAL.xoaNV(maNVXoa);
+        }
     }
 }
