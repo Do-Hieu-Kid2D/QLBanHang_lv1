@@ -8,12 +8,12 @@ namespace DTO
         public string maNCC { get; set; }
         public string maLoaiHang { get; set; }
         public int soLuong { get; set; }
-        public double donViTinh { get; set; }
+        public string donViTinh { get; set; }
         public decimal giaNhap { get; set; }
         public decimal giaBan { get; set; }
         public string hinhAnh { get; set; }
 
-        public MatHangDTO(string maHang, string tenHang, string maNCC, string maLoaiHang, int soLuong, double donViTinh, decimal giaNhap, decimal giaBan, string hinhAnh)
+        public MatHangDTO(string maHang, string tenHang, string maNCC, string maLoaiHang, int soLuong, string donViTinh, decimal giaNhap, decimal giaBan, string hinhAnh)
         {
             this.maHang = maHang;
             this.tenHang = tenHang;
@@ -24,6 +24,10 @@ namespace DTO
             this.giaNhap = giaNhap;
             this.giaBan = giaBan;
             this.hinhAnh = hinhAnh;
+        }
+
+        public MatHangDTO()
+        {
         }
     }
 }

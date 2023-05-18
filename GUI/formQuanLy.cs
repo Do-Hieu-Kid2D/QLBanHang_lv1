@@ -877,5 +877,69 @@ namespace GUI
             PlaySound.playNeedText(txtHoZo.Text);
 
         }
+
+        private void btnChiTietHTTT_Click(object sender, EventArgs e)
+        {
+            fChiTietHTTT f = new fChiTietHTTT(this);
+            f.ShowDialog();
+          
+        }
+
+        private void btnCacLoaiHang_Click(object sender, EventArgs e)
+        {
+            fLoaiHang f = new fLoaiHang(this);
+            f.ShowDialog();
+        }
+
+        private void btnSuaDonHang_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void btnThemDonHang_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        fEditAddMatHang f;
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            if (dgvDataMH.SelectedRows.Count <= 0)
+            {
+                MessageBox.Show("Cần chọn đối tượng muốn chỉnh sửa trên bảng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            DataGridViewRow selectedRow = dgvDataMH.SelectedRows[0];
+            // Lấy giá trị của các ô dữ liệu trong hàng đó
+            string maH = selectedRow.Cells[0].Value.ToString(); 
+            string tenH = selectedRow.Cells[1].Value.ToString();
+            string maNCC = selectedRow.Cells[2].Value.ToString();
+            string maLH = selectedRow.Cells[3].Value.ToString();
+            int soLuong = Convert.ToInt32(selectedRow.Cells[4].Value.ToString());
+            string dvTinh = selectedRow.Cells[5].Value.ToString();
+            decimal giaNhap = Convert.ToDecimal(selectedRow.Cells[6].Value.ToString());
+            decimal giaBan = Convert.ToDecimal(selectedRow.Cells[7].Value.ToString());
+            string hinhAnh = selectedRow.Cells[8].Value.ToString();
+            MatHangDTO mh = new MatHangDTO(maH, tenH, maNCC, maLH,soLuong,dvTinh, giaNhap, giaBan, hinhAnh);
+            f = new fEditAddMatHang(this, "edit", mh);
+            f.ShowDialog();
+        }
+
+        private void btnThem_Click(object sender, EventArgs e)
+        {
+            f = new fEditAddMatHang(this, "add", new MatHangDTO());
+            f.ShowDialog();
+        }
+        //MatHangDTO matHangThem;
+        public string them1MatHang(MatHangDTO matHang)
+        {
+            return MatHangBLL.them1MatHang(matHang);
+
+        }
+
+        private void btnSuaNhanVien_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

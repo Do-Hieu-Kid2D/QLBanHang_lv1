@@ -46,6 +46,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="fChiTietHTTT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fChiTietHTTT.Designer.cs">
+      <DependentUpon>fChiTietHTTT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fEditAddMatHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fEditAddMatHang.Designer.cs">
+      <DependentUpon>fEditAddMatHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fLoaiHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fLoaiHang.Designer.cs">
+      <DependentUpon>fLoaiHang.cs</DependentUpon>
+    </Compile>
     <Compile Include="PlaySound.cs" />
     <Compile Include="finGlobal.cs">
       <SubType>Form</SubType>
@@ -85,11 +103,20 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="fChiTietHTTT.resx">
+      <DependentUpon>fChiTietHTTT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fEditAddMatHang.resx">
+      <DependentUpon>fEditAddMatHang.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="finGlobal.resx">
       <DependentUpon>finGlobal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="fLapHoaDon.resx">
       <DependentUpon>fLapHoaDon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fLoaiHang.resx">
+      <DependentUpon>fLoaiHang.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formDangNhap.resx">
       <DependentUpon>formDangNhap.cs</DependentUpon>
@@ -159,6 +186,8 @@
     <Content Include="report\store.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\order.png" />
+    <None Include="Resources\order %281%29.png" />
     <Content Include="sound\text_sang_nhac.py">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
