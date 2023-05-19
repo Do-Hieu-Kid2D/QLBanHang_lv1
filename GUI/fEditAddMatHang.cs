@@ -156,7 +156,8 @@ namespace GUI
             string dvTinh = txtDVTinh.Text;
             string giaNhap = txtGiaNhap.Text; // money
             string giaBan = txtGiaBan.Text;   // money\
-            
+            cbxMaLoaiHang_SelectedIndexChanged(sender, e);
+            cbxMaNCC_SelectedIndexChanged(sender, e);
             // còn 2 cái mã kia lưu toàn cục sự kiện của combox kiểm soát
             Boolean ok;
             /*
@@ -237,8 +238,8 @@ namespace GUI
                         string kq = fQL.them1MatHang(mh);  
                         if(kq.EndsWith("thành công!"))
                         {
-                            MessageBox.Show(kq, "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             fQL.hienThiALLMatHang("");
+                            MessageBox.Show(kq, "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             button3_Click(sender, e);
                         }
                         else
@@ -256,8 +257,7 @@ namespace GUI
                 else // comman = "edit"
                 {
                     // Mặt hàng cần sửa đã đc bố gán sang! -> đưa dữ liệu trở lên giao diện
-                    cbxMaLoaiHang_SelectedIndexChanged(sender, e);
-                    cbxMaNCC_SelectedIndexChanged(sender, e);
+                   
                     MatHangDTO mh = new MatHangDTO(maHang, tenHang, maNhaCC, maLoaiHang, soLuong_So, dvTinh, giaNhap_So, giaBan_So, duongDanAnh);
                     try
                     {
@@ -265,8 +265,8 @@ namespace GUI
 
                         if (kq.EndsWith("thành công!"))
                         {
-                            MessageBox.Show(kq, "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             fQL.hienThiALLMatHang("");
+                            MessageBox.Show(kq, "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             button3_Click(sender, e);
                         }
                         else
@@ -306,7 +306,6 @@ namespace GUI
         private void button3_Click(object sender, EventArgs e)
         {
             this.Hide();
-            this.Dispose();
         }
     }
 }

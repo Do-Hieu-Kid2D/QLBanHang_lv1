@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DAL;
+using DTO;
 
 namespace BLL
 {
@@ -15,6 +16,16 @@ namespace BLL
             DataTable kq = new DataTable();
             kq = KhachHangDAL.layALLKhachHang(dk);
             return kq;
+        }
+
+        public static string sua1KhachHang(KhachHangDTO khMoi, KhachHangDTO khCu)
+        {
+            return KhachHangDAL.sua1KhachHang(khMoi, khCu);
+        }
+
+        public static string them1KhachHang(KhachHangDTO khCanThem)
+        {
+            return KhachHangDAL.them1KhachHang(khCanThem);
         }
 
         public static int xoaKH(string maKHXoa)

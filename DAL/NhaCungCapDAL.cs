@@ -20,7 +20,7 @@ namespace DAL
             }
             else
             {
-                query = $"select * from NHACUNGCAP where tenNhaCC like '%{dk}%';";
+                query = $"select * from NHACUNGCAP where tenNhaCC like N'%{dk}%';";
             }
             // Khởi tạo đối tượng SqlConnection
             using (SqlConnection connection = new SqlConnection(strCon))

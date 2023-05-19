@@ -33,17 +33,6 @@ namespace GUI
 
         }
 
-        private void btnDangXuat_Click(object sender, EventArgs e)
-        {
-            DialogResult result = MessageBox.Show("Bạn có muốn đăng xuất không?", "Thông báo!", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-            if (result == DialogResult.Yes)
-            {
-                fDN.Show();
-                this.Close();
-            }
-
-        }
-
         private void txtTimKiem_MouseClick(object sender, MouseEventArgs e)
         {
             txtTimMatHang.Text = "";
@@ -882,7 +871,7 @@ namespace GUI
         {
             fChiTietHTTT f = new fChiTietHTTT(this);
             f.ShowDialog();
-          
+
         }
 
         private void btnCacLoaiHang_Click(object sender, EventArgs e)
@@ -893,15 +882,15 @@ namespace GUI
 
         private void btnSuaDonHang_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void btnThemDonHang_Click(object sender, EventArgs e)
         {
-           
+
         }
 
-        fEditAddMatHang f;
+        fEditAddMatHang fAEMatHang;
         private void btnSua_Click(object sender, EventArgs e)
         {
             if (dgvDataMH.SelectedRows.Count <= 0)
@@ -911,7 +900,7 @@ namespace GUI
             }
             DataGridViewRow selectedRow = dgvDataMH.SelectedRows[0];
             // Lấy giá trị của các ô dữ liệu trong hàng đó
-            string maH = selectedRow.Cells[0].Value.ToString(); 
+            string maH = selectedRow.Cells[0].Value.ToString();
             string tenH = selectedRow.Cells[1].Value.ToString();
             string maNCC = selectedRow.Cells[2].Value.ToString();
             string maLH = selectedRow.Cells[3].Value.ToString();
@@ -920,15 +909,15 @@ namespace GUI
             decimal giaNhap = Convert.ToDecimal(selectedRow.Cells[6].Value.ToString());
             decimal giaBan = Convert.ToDecimal(selectedRow.Cells[7].Value.ToString());
             string hinhAnh = selectedRow.Cells[8].Value.ToString();
-            MatHangDTO mh = new MatHangDTO(maH, tenH, maNCC, maLH,soLuong,dvTinh, giaNhap, giaBan, hinhAnh);
-            f = new fEditAddMatHang(this, "edit", mh);
-            f.ShowDialog();
+            MatHangDTO mh = new MatHangDTO(maH, tenH, maNCC, maLH, soLuong, dvTinh, giaNhap, giaBan, hinhAnh);
+            fAEMatHang = new fEditAddMatHang(this, "edit", mh);
+            fAEMatHang.ShowDialog();
         }
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            f = new fEditAddMatHang(this, "add", new MatHangDTO());
-            f.ShowDialog();
+            fAEMatHang = new fEditAddMatHang(this, "add", new MatHangDTO());
+            fAEMatHang.ShowDialog();
         }
         //MatHangDTO matHangThem;
         public string them1MatHang(MatHangDTO matHang)
@@ -937,9 +926,75 @@ namespace GUI
 
         }
 
-        private void btnSuaNhanVien_Click(object sender, EventArgs e)
+        private void txtTimMatHang_MouseClick(object sender, MouseEventArgs e)
+        {
+            txtTimMatHang.Text = "";
+            txtTimMatHang.ForeColor = Color.Black; // Đen
+        }
+
+        private void btnTim_Click_1(object sender, EventArgs e)
+        {
+            hienThiALLMatHang(txtTimMatHang.Text.Trim());
+        }
+        fAddEditKhachHang fAEKhachHang;
+        private void btnThemKhachHang_Click(object sender, EventArgs e)
+        {
+            fAEKhachHang = new fAddEditKhachHang(this, "ADD", new KhachHangDTO());
+            fAEKhachHang.ShowDialog();
+        }
+
+        private KhachHangDTO getKhachHangDGV()
         {
 
+            if (dgvDataKH.SelectedRows.Count <= 0)
+            {
+                MessageBox.Show("Bạn cần chọn đối tượng muốn chỉnh sửa trên bảng!", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+
+            DataGridViewRow selectedRow = dgvDataKH.SelectedRows[0];
+            // Lấy giá trị của các ô dữ liệu trong hàng đó
+            String maKh = selectedRow.Cells[0].Value.ToString();
+            string tenKH = selectedRow.Cells[1].Value.ToString();
+            Boolean gioiTinh;
+            if (selectedRow.Cells[2].Value.ToString() == "Nam")
+                gioiTinh = true;
+            else
+                gioiTinh = false;
+            string tenCT = selectedRow.Cells[3].Value.ToString();
+            string diaChi = selectedRow.Cells[4].Value.ToString();
+            string Email = selectedRow.Cells[5].Value.ToString();
+            string sdt = selectedRow.Cells[6].Value.ToString();
+            KhachHangDTO kq = new KhachHangDTO(maKh, tenKH, gioiTinh, tenCT, diaChi, Email, sdt);
+            return kq;
+        }
+
+        internal string them1KhachHang(KhachHangDTO khCanThem)
+        {
+            return KhachHangBLL.them1KhachHang(khCanThem);
+        }
+
+        private void btnDangXuat_Click_1(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Bạn có muốn đăng xuất không?", "Thông báo!", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            if (result == DialogResult.Yes)
+            {
+                fDN.Show();
+                this.Close();
+            }
+        }
+
+        private void btnSuaKhachHang_Click(object sender, EventArgs e)
+        {
+            KhachHangDTO kh = getKhachHangDGV();
+            if (kh == null) return;
+            fAEKhachHang = new fAddEditKhachHang(this, "EDIT", kh);
+            fAEKhachHang.ShowDialog();
+        }
+
+        internal string sua1KhachHang(KhachHangDTO khMoi, KhachHangDTO khCu)
+        {
+            return KhachHangBLL.sua1KhachHang(khMoi,khCu);
         }
     }
 }

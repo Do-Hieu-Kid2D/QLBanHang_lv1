@@ -25,9 +25,9 @@ namespace DAL
             }
             else
             {
-                query = $"select * from MATHANG where tenHang like '%{dk}%';";
+                query = $"select * from MATHANG where tenHang like N'%{dk}%';";
             }
-
+            Console.WriteLine(query);
             using (SqlConnection sqlCon = new SqlConnection(strCon))
             {
                 try

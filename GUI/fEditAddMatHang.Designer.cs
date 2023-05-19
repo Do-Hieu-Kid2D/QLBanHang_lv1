@@ -98,6 +98,7 @@
             // btnQuayLai
             // 
             this.btnQuayLai.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.btnQuayLai.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnQuayLai.Location = new System.Drawing.Point(323, 262);
             this.btnQuayLai.Name = "btnQuayLai";
             this.btnQuayLai.Size = new System.Drawing.Size(85, 30);
@@ -109,6 +110,7 @@
             // btnCommand
             // 
             this.btnCommand.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnCommand.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCommand.Location = new System.Drawing.Point(169, 262);
             this.btnCommand.Name = "btnCommand";
             this.btnCommand.Size = new System.Drawing.Size(85, 30);
@@ -330,6 +332,7 @@
             this.ClientSize = new System.Drawing.Size(583, 346);
             this.Controls.Add(this.splitContainer1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "fEditAddMatHang";
