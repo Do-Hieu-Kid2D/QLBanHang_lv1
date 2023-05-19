@@ -8,8 +8,10 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Drawing;
+using System.Globalization;
 using System.Security.Cryptography;
 using System.Windows.Forms;
+using static System.Windows.Forms.AxHost;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace GUI
@@ -882,12 +884,59 @@ namespace GUI
 
         private void btnSuaDonHang_Click(object sender, EventArgs e)
         {
-
+            DonHangDTO dhCu = getDHDataDGV();
+            if (dhCu == null) return;
+            fAEDonHang = new fAddEditDonHang(this, "EDIT", dhCu);
+            fAEDonHang.ShowDialog();
         }
 
+        private DonHangDTO getDHDataDGV()
+        {
+            if (dgvDataDH.SelectedRows.Count <= 0)
+            {
+                MessageBox.Show("Bạn phải chọn đối tượng muốn chỉnh sửa trên bảng!", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+            DataGridViewRow dtr = dgvDataDH.SelectedRows[0];
+
+            string soHD = dtr.Cells[0].Value.ToString();
+            string maKH = dtr.Cells[1].Value.ToString();
+            string maNv = dtr.Cells[2].Value.ToString();
+            string datHang_S = dtr.Cells[3].Value.ToString();
+            string giaoHang_S = dtr.Cells[4].Value.ToString();
+            // Hàm chuyển kia chuyển về ngon mà:
+            // cho 1 chuỗi string trên dgv thì nó chuyển về datetime - còn nếu 
+            // lấy value từ datepicker thì nó là datetime sẵn r
+            DateTime datHang = chuyenStrToDatime(datHang_S);
+            DateTime giaoHang = chuyenStrToDatime(giaoHang_S);
+            //MessageBox.Show(datHang_S);
+            //MessageBox.Show(datHang.ToString("dd/mm/yyyy"));
+            string diaChiGiaoHang = dtr.Cells[6].Value.ToString();
+            string  maHTTT = dtr.Cells[5].Value.ToString();
+            return new DonHangDTO(soHD, maKH, maNv, datHang, giaoHang, diaChiGiaoHang, maHTTT);
+        }
+
+        private DateTime chuyenStrToDatime(string txtDate)
+        {
+            try
+            {
+                if (txtDate == null || txtDate == "")
+                    return DateTime.Now;
+                else
+                    return
+                         DateTime.Parse(txtDate);
+            }
+            catch
+            {
+                return DateTime.Now;
+            }
+        }
+
+        fAddEditDonHang fAEDonHang;
         private void btnThemDonHang_Click(object sender, EventArgs e)
         {
-
+            fAEDonHang = new fAddEditDonHang(this, "ADD", new DonHangDTO());
+            fAEDonHang.ShowDialog();
         }
 
         fEditAddMatHang fAEMatHang;
@@ -994,7 +1043,17 @@ namespace GUI
 
         internal string sua1KhachHang(KhachHangDTO khMoi, KhachHangDTO khCu)
         {
-            return KhachHangBLL.sua1KhachHang(khMoi,khCu);
+            return KhachHangBLL.sua1KhachHang(khMoi, khCu);
+        }
+
+        internal string them1DonHang(DonHangDTO donhangMoi)
+        {
+            return DonHangBLL.them1DonHang(donhangMoi);
+        }
+
+        internal string sua1DonHang(DonHangDTO dhMoi, DonHangDTO dhCu)
+        {
+            return DonHangBLL.sua1DonHang(dhMoi, dhCu);
         }
     }
 }

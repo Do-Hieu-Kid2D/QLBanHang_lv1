@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="fAddEditDonHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fAddEditDonHang.Designer.cs">
+      <DependentUpon>fAddEditDonHang.cs</DependentUpon>
+    </Compile>
     <Compile Include="fAddEditKhachHang.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,6 +115,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="fAddEditDonHang.resx">
+      <DependentUpon>fAddEditDonHang.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="fAddEditKhachHang.resx">
       <DependentUpon>fAddEditKhachHang.cs</DependentUpon>
     </EmbeddedResource>
