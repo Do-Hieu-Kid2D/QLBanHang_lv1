@@ -1055,5 +1055,51 @@ namespace GUI
         {
             return DonHangBLL.sua1DonHang(dhMoi, dhCu);
         }
+
+        private void btnChiTiet_Click(object sender, EventArgs e)
+        {
+            string soDH = "";
+            if(dgvDataDH.SelectedRows.Count <=0) {
+                MessageBox.Show("Bạn cần chọn đơn hàng muốn xem chi tiết trên bảng", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            DataGridViewRow viewRow = dgvDataDH.SelectedRows[0];
+            soDH = viewRow.Cells[0].Value.ToString();
+            fViewDonHang f = new fViewDonHang(soDH);
+            f.ShowDialog();
+        }
+        fAddEditNhaCC fAENCC;
+        private void btnThemNCC_Click(object sender, EventArgs e)
+        {
+            fAENCC = new fAddEditNhaCC(this, "ADD", new NhaCungCapDTO());
+            fAENCC.ShowDialog();
+
+        }
+
+        private void btnSuaNCC_Click(object sender, EventArgs e)
+        {
+            NhaCungCapDTO nccSua = layThongTinDGV();
+            if (nccSua == null) return;
+            fAENCC = new fAddEditNhaCC(this, "EDIT", nccSua);
+            fAENCC.ShowDialog();
+        }
+
+        private NhaCungCapDTO layThongTinDGV()
+        {
+            if (dgvDataNCC.SelectedRows.Count <= 0)
+            {
+                MessageBox.Show("Bạn phải chọn đối tượng muốn chỉnh sửa trên bảng!", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+            DataGridViewRow dtr = dgvDataNCC.SelectedRows[0];
+
+            string ma = dtr.Cells[0].Value.ToString();
+            string ten = dtr.Cells[1].Value.ToString();
+            string diaChi = dtr.Cells[2].Value.ToString();
+            string dienThoai = dtr.Cells[3].Value.ToString();
+            string email = dtr.Cells[4].Value.ToString();
+            string nguoiDaiDien = dtr.Cells[5].Value.ToString();
+            return new NhaCungCapDTO(ma, ten, diaChi, dienThoai, email, nguoiDaiDien);
+        }
     }
 }

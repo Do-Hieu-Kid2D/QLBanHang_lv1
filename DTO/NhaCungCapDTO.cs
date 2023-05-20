@@ -8,12 +8,12 @@ namespace DTO
 {
     public class NhaCungCapDTO
     {
-        string ma { get; set; }
-        string ten { get; set; }
-        string diaChi { get; set; }
-        string dienThoai { get; set; }
-        string email { get; set; }
-        string nguoiDaiDien { get; set; }
+        public string ma { get; set; }
+        public string ten { get; set; }
+        public string diaChi { get; set; }
+        public string dienThoai { get; set; }
+        public string email { get; set; }
+        public string nguoiDaiDien { get; set; }
 
         public NhaCungCapDTO(string ma, string ten, string diaChi, string dienThoai, string email, string nguoiDaiDien)
         {
@@ -23,6 +23,10 @@ namespace DTO
             this.dienThoai = dienThoai;
             this.email = email;
             this.nguoiDaiDien = nguoiDaiDien;
+        }
+
+        public NhaCungCapDTO()
+        {
         }
     }
 }

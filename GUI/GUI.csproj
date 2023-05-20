@@ -58,6 +58,12 @@
     <Compile Include="fAddEditKhachHang.Designer.cs">
       <DependentUpon>fAddEditKhachHang.cs</DependentUpon>
     </Compile>
+    <Compile Include="fAddEditNhaCC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fAddEditNhaCC.Designer.cs">
+      <DependentUpon>fAddEditNhaCC.cs</DependentUpon>
+    </Compile>
     <Compile Include="fChiTietHTTT.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,6 +82,13 @@
     <Compile Include="fLoaiHang.Designer.cs">
       <DependentUpon>fLoaiHang.cs</DependentUpon>
     </Compile>
+    <Compile Include="fViewDonHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fViewDonHang.Designer.cs">
+      <DependentUpon>fViewDonHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LibDB.cs" />
     <Compile Include="PlaySound.cs" />
     <Compile Include="finGlobal.cs">
       <SubType>Form</SubType>
@@ -121,6 +134,9 @@
     <EmbeddedResource Include="fAddEditKhachHang.resx">
       <DependentUpon>fAddEditKhachHang.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="fAddEditNhaCC.resx">
+      <DependentUpon>fAddEditNhaCC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="fChiTietHTTT.resx">
       <DependentUpon>fChiTietHTTT.cs</DependentUpon>
     </EmbeddedResource>
@@ -147,6 +163,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="fThemKhachHang.resx">
       <DependentUpon>fThemKhachHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fViewDonHang.resx">
+      <DependentUpon>fViewDonHang.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
