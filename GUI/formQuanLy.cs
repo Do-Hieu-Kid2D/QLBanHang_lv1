@@ -2,17 +2,16 @@
 using DTO;
 using Project_CSDLBanHang;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Diagnostics;
 using System.Drawing;
-using System.Globalization;
-using System.Security.Cryptography;
 using System.Windows.Forms;
-using static System.Windows.Forms.AxHost;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+// Microsoft.SqlServer.Management.Common;
+using Microsoft.SqlServer.Server;
+using System.IO;
+using static System.Net.WebRequestMethods;
+using System.ComponentModel;
 
 namespace GUI
 {
@@ -20,6 +19,7 @@ namespace GUI
     {
         string strCon = Properties.Settings.Default.strCon;
         formDangNhap fDN;
+        List<string> listFileBackup = new List<string>();
         public formQuanLy(formDangNhap dangNhap)
         {
             InitializeComponent();
@@ -32,9 +32,9 @@ namespace GUI
             txtTimDonHang.ForeColor = Color.Gray; // Màu xám
             txtTimNCC.ForeColor = Color.Gray; // Màu xám
             this.dgvDataMH.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            setUpRestore();
 
         }
-
         private void txtTimKiem_MouseClick(object sender, MouseEventArgs e)
         {
             txtTimMatHang.Text = "";
@@ -912,7 +912,7 @@ namespace GUI
             //MessageBox.Show(datHang_S);
             //MessageBox.Show(datHang.ToString("dd/mm/yyyy"));
             string diaChiGiaoHang = dtr.Cells[6].Value.ToString();
-            string  maHTTT = dtr.Cells[5].Value.ToString();
+            string maHTTT = dtr.Cells[5].Value.ToString();
             return new DonHangDTO(soHD, maKH, maNv, datHang, giaoHang, diaChiGiaoHang, maHTTT);
         }
 
@@ -1059,7 +1059,8 @@ namespace GUI
         private void btnChiTiet_Click(object sender, EventArgs e)
         {
             string soDH = "";
-            if(dgvDataDH.SelectedRows.Count <=0) {
+            if (dgvDataDH.SelectedRows.Count <= 0)
+            {
                 MessageBox.Show("Bạn cần chọn đơn hàng muốn xem chi tiết trên bảng", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -1101,5 +1102,140 @@ namespace GUI
             string nguoiDaiDien = dtr.Cells[5].Value.ToString();
             return new NhaCungCapDTO(ma, ten, diaChi, dienThoai, email, nguoiDaiDien);
         }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/Do-Hieu-Kid2D/QLBanHang_lv1");
+        }
+
+
+
+        private void btnLuuLai_Click(object sender, EventArgs e)
+        {
+            // Tạo nơi chứa thư mục backup đã!
+            string pathBackUp = Application.StartupPath + "\\backup\\";
+            // Kiểm tra xem thư mục đã tồn tại hay chưa
+            if (!Directory.Exists(pathBackUp))
+                // Tạo thư mục mới
+                Directory.CreateDirectory(pathBackUp);
+            // Lấy tên file bak <-> ngày hiện tại! 
+            DateTime currentDate = DateTime.Now;
+            string day = currentDate.Day.ToString();
+            string month = currentDate.Month.ToString();
+            string year = currentDate.Year.ToString();
+            string bienx = day + "/" + month + "/" + year;
+            string tenFileBAK = day + "_" + month + "_" + year + ".bak";
+            string duongdanBackup = pathBackUp + tenFileBAK;
+
+            //if (!File.Exists(duongdanBackup))
+            //    File.Create(duongdanBackup).Close();
+            try
+            {
+                // Tạo chuỗi query!
+                string tenDB = "Cuoi";
+                string query = $"BACKUP DATABASE {tenDB} TO DISK = '{duongdanBackup}' WITH INIT, FORMAT;";
+                // oke backup lại thôi
+                SqlServer libDB = new SqlServer(strCon);
+                SqlCommand cmd = libDB.GetCmdSQLChay(query);
+                int kq = libDB.QueryNon(cmd);
+                MessageBox.Show($"Đã lưu lại trạng thái CSDL ngày: {bienx}.", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //listFileBackup.Add("Ngày: " + bienx);
+                //listBox1.Items.Add("Ngày: " + bienx);
+                setUpRestore();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + "    -> Chưa backup được!", "Thông báo!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+        private void btnPhucHoi_Click(object sender, EventArgs e)
+        {
+            string pathBackUp = Application.StartupPath + "\\backup";
+            // chọn được file bak muốn backup! ở listBox mk đã setup rồi!
+            string fileDuocChon = chonFile();
+            if (fileDuocChon == null)
+            {
+                MessageBox.Show("Bạn chưa chọn thời gian muốn khôi phục CSDL!", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            // Có đc tên file bacup dang: Ngày: dd//mm/yyy:
+            string fileChonDeBackUp = fileDuocChon.Substring(6);
+            string bienx = fileChonDeBackUp;
+            fileChonDeBackUp = fileChonDeBackUp.Replace('/', '_');
+            // Đường dẫn để backup đây
+            string duongDanBackUp = pathBackUp + "\\" + fileChonDeBackUp + ".bak";
+            Console.WriteLine("Cuối cùng =>" + duongDanBackUp);
+            // Lấy được file backup rồi hỏi xem chắc chắn k?
+            DialogResult chanChan = MessageBox.Show($"Bạn chắc chắn muốn phục hồi CSDL về ngày: {fileChonDeBackUp}", "Thông báo!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            if (chanChan == DialogResult.OK)
+            {
+                try
+                {
+                    // Oke backup thôi
+                    SqlServer libDB = new SqlServer(strCon);
+                    string tenDB = "Cuoi";
+                    string query = $"use master" +
+                        $" ALTER DATABASE {tenDB} SET SINGLE_USER WITH ROLLBACK IMMEDIATE;" +
+                        $" RESTORE DATABASE {tenDB} FROM DISK = '{duongDanBackUp}' WITH REPLACE;";
+                    SqlCommand cmd = libDB.GetCmdSQLChay(query);
+                    int kq = libDB.QueryNon(cmd);
+                    MessageBox.Show($"Đã khôi phục CSDL về trạng thái ngày: {bienx}.", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message + " Chưa khôi phục đc rồi -> lỗi này chưa fix", "Thông báo!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            }
+            else
+            {
+                listBox1.SelectedIndex = -1;
+                return;
+            }
+
+        }
+
+
+        private string chonFile()
+        {
+            if (listBox1.SelectedIndex == -1) return null;
+            string selectedItem = listBox1.SelectedItem.ToString();
+            return selectedItem;
+        }
+
+        private void setUpRestore()
+        {
+
+            //string pathBackUp = @"C:\Users\Dkid_22\Desktop\NGHE";
+            string pathBackUp = Application.StartupPath + "\\backup";
+
+            // Lấy danh sách các file trong thư mục
+            string[] files = Directory.GetFiles(pathBackUp);
+            listBox1.Items.Clear();
+            foreach (string filePath in files)
+            {
+                // Lấy ra tên file:
+                string fileName = Path.GetFileName(filePath);
+                string[] arr = fileName.Split('.');
+                string tenFile = arr[0];
+                //Console.WriteLine(tenFile);
+                // Đã có tên file là dd_mm_yyyy -> giờ replace -> hiển thị cho nười ta chọn!
+                tenFile = tenFile.Replace('_', '/');
+                tenFile = "Ngày: " + tenFile;
+                listBox1.Items.Add(tenFile);
+                Console.WriteLine(tenFile);
+            }
+            listBox1.SelectedIndex = -1;
+
+        }
     }
 }
+
+

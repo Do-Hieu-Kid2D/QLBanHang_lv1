@@ -170,10 +170,12 @@
             this.tabHeThong = new System.Windows.Forms.TabPage();
             this.panel12 = new System.Windows.Forms.Panel();
             this.panel28 = new System.Windows.Forms.Panel();
-            this.splitContainer13 = new System.Windows.Forms.SplitContainer();
-            this.panel29 = new System.Windows.Forms.Panel();
-            this.dataGridView5 = new System.Windows.Forms.DataGridView();
-            this.panel30 = new System.Windows.Forms.Panel();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.btnPhucHoi = new System.Windows.Forms.Button();
+            this.btnLuuLai = new System.Windows.Forms.Button();
             this.panel13 = new System.Windows.Forms.Panel();
             this.splitContainer7 = new System.Windows.Forms.SplitContainer();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
@@ -287,12 +289,6 @@
             this.tabHeThong.SuspendLayout();
             this.panel12.SuspendLayout();
             this.panel28.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer13)).BeginInit();
-            this.splitContainer13.Panel1.SuspendLayout();
-            this.splitContainer13.Panel2.SuspendLayout();
-            this.splitContainer13.SuspendLayout();
-            this.panel29.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
             this.panel13.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer7)).BeginInit();
             this.splitContainer7.Panel1.SuspendLayout();
@@ -323,7 +319,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tabMain);
             this.splitContainer1.Size = new System.Drawing.Size(1491, 863);
-            this.splitContainer1.SplitterDistance = 46;
+            this.splitContainer1.SplitterDistance = 43;
             this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -337,7 +333,7 @@
             this.panel38.Location = new System.Drawing.Point(0, 0);
             this.panel38.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel38.Name = "panel38";
-            this.panel38.Size = new System.Drawing.Size(1491, 46);
+            this.panel38.Size = new System.Drawing.Size(1491, 43);
             this.panel38.TabIndex = 0;
             // 
             // btnDangXuat
@@ -348,7 +344,7 @@
             this.btnDangXuat.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnDangXuat.ImageKey = "exit.png";
             this.btnDangXuat.ImageList = this.imageList1;
-            this.btnDangXuat.Location = new System.Drawing.Point(1296, 6);
+            this.btnDangXuat.Location = new System.Drawing.Point(1296, 5);
             this.btnDangXuat.Name = "btnDangXuat";
             this.btnDangXuat.Size = new System.Drawing.Size(147, 38);
             this.btnDangXuat.TabIndex = 8;
@@ -387,7 +383,7 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(656, 6);
+            this.label1.Location = new System.Drawing.Point(656, 5);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(274, 36);
             this.label1.TabIndex = 6;
@@ -424,7 +420,7 @@
             this.tabMain.MinimumSize = new System.Drawing.Size(1558, 786);
             this.tabMain.Name = "tabMain";
             this.tabMain.SelectedIndex = 0;
-            this.tabMain.Size = new System.Drawing.Size(1558, 812);
+            this.tabMain.Size = new System.Drawing.Size(1558, 815);
             this.tabMain.TabIndex = 0;
             this.tabMain.Tag = "";
             // 
@@ -438,7 +434,7 @@
             this.tabMatHang.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
             this.tabMatHang.Name = "tabMatHang";
             this.tabMatHang.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabMatHang.Size = new System.Drawing.Size(1550, 767);
+            this.tabMatHang.Size = new System.Drawing.Size(1550, 770);
             this.tabMatHang.TabIndex = 0;
             this.tabMatHang.Text = " Mặt hàng";
             // 
@@ -450,7 +446,7 @@
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1544, 761);
+            this.panel1.Size = new System.Drawing.Size(1544, 764);
             this.panel1.TabIndex = 0;
             // 
             // panel5
@@ -539,7 +535,7 @@
             // 
             this.splitContainer8.Panel2.Controls.Add(this.panel15);
             this.splitContainer8.Size = new System.Drawing.Size(1437, 618);
-            this.splitContainer8.SplitterDistance = 415;
+            this.splitContainer8.SplitterDistance = 412;
             this.splitContainer8.SplitterWidth = 6;
             this.splitContainer8.TabIndex = 0;
             // 
@@ -551,7 +547,7 @@
             this.panel14.Location = new System.Drawing.Point(0, 0);
             this.panel14.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(1437, 415);
+            this.panel14.Size = new System.Drawing.Size(1437, 412);
             this.panel14.TabIndex = 0;
             // 
             // dgvDataMH
@@ -598,7 +594,7 @@
             this.dgvDataMH.RowTemplate.Height = 32;
             this.dgvDataMH.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvDataMH.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDataMH.Size = new System.Drawing.Size(1437, 415);
+            this.dgvDataMH.Size = new System.Drawing.Size(1437, 412);
             this.dgvDataMH.TabIndex = 1;
             // 
             // panel15
@@ -619,7 +615,7 @@
             this.panel15.Location = new System.Drawing.Point(0, 0);
             this.panel15.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel15.Name = "panel15";
-            this.panel15.Size = new System.Drawing.Size(1437, 197);
+            this.panel15.Size = new System.Drawing.Size(1437, 200);
             this.panel15.TabIndex = 0;
             // 
             // txtTimMatHang
@@ -747,7 +743,7 @@
             this.tabKhachHang.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
             this.tabKhachHang.Name = "tabKhachHang";
             this.tabKhachHang.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabKhachHang.Size = new System.Drawing.Size(1550, 767);
+            this.tabKhachHang.Size = new System.Drawing.Size(1550, 770);
             this.tabKhachHang.TabIndex = 1;
             this.tabKhachHang.Text = " Khách hàng ";
             this.tabKhachHang.UseVisualStyleBackColor = true;
@@ -760,7 +756,7 @@
             this.panel4.Location = new System.Drawing.Point(3, 3);
             this.panel4.Margin = new System.Windows.Forms.Padding(0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1544, 761);
+            this.panel4.Size = new System.Drawing.Size(1544, 764);
             this.panel4.TabIndex = 0;
             // 
             // panel16
@@ -791,7 +787,7 @@
             // 
             this.splitContainer9.Panel2.Controls.Add(this.panel18);
             this.splitContainer9.Size = new System.Drawing.Size(1437, 618);
-            this.splitContainer9.SplitterDistance = 415;
+            this.splitContainer9.SplitterDistance = 412;
             this.splitContainer9.SplitterWidth = 6;
             this.splitContainer9.TabIndex = 0;
             // 
@@ -803,7 +799,7 @@
             this.panel17.Location = new System.Drawing.Point(0, 0);
             this.panel17.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel17.Name = "panel17";
-            this.panel17.Size = new System.Drawing.Size(1437, 415);
+            this.panel17.Size = new System.Drawing.Size(1437, 412);
             this.panel17.TabIndex = 0;
             // 
             // dgvDataKH
@@ -850,7 +846,7 @@
             this.dgvDataKH.RowTemplate.Height = 32;
             this.dgvDataKH.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvDataKH.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDataKH.Size = new System.Drawing.Size(1437, 415);
+            this.dgvDataKH.Size = new System.Drawing.Size(1437, 412);
             this.dgvDataKH.TabIndex = 0;
             // 
             // panel18
@@ -870,7 +866,7 @@
             this.panel18.Location = new System.Drawing.Point(0, 0);
             this.panel18.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel18.Name = "panel18";
-            this.panel18.Size = new System.Drawing.Size(1437, 197);
+            this.panel18.Size = new System.Drawing.Size(1437, 200);
             this.panel18.TabIndex = 0;
             // 
             // label11
@@ -1041,7 +1037,7 @@
             this.tabDonHang.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
             this.tabDonHang.Name = "tabDonHang";
             this.tabDonHang.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabDonHang.Size = new System.Drawing.Size(1550, 767);
+            this.tabDonHang.Size = new System.Drawing.Size(1550, 770);
             this.tabDonHang.TabIndex = 2;
             this.tabDonHang.Text = " Đơn hàng";
             this.tabDonHang.UseVisualStyleBackColor = true;
@@ -1054,7 +1050,7 @@
             this.panel6.Location = new System.Drawing.Point(3, 3);
             this.panel6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1544, 761);
+            this.panel6.Size = new System.Drawing.Size(1544, 764);
             this.panel6.TabIndex = 0;
             // 
             // panel19
@@ -1085,7 +1081,7 @@
             // 
             this.splitContainer10.Panel2.Controls.Add(this.panel21);
             this.splitContainer10.Size = new System.Drawing.Size(1437, 618);
-            this.splitContainer10.SplitterDistance = 415;
+            this.splitContainer10.SplitterDistance = 412;
             this.splitContainer10.SplitterWidth = 6;
             this.splitContainer10.TabIndex = 0;
             // 
@@ -1097,7 +1093,7 @@
             this.panel20.Location = new System.Drawing.Point(0, 0);
             this.panel20.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel20.Name = "panel20";
-            this.panel20.Size = new System.Drawing.Size(1437, 415);
+            this.panel20.Size = new System.Drawing.Size(1437, 412);
             this.panel20.TabIndex = 0;
             // 
             // dgvDataDH
@@ -1144,7 +1140,7 @@
             this.dgvDataDH.RowTemplate.Height = 32;
             this.dgvDataDH.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvDataDH.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDataDH.Size = new System.Drawing.Size(1437, 415);
+            this.dgvDataDH.Size = new System.Drawing.Size(1437, 412);
             this.dgvDataDH.TabIndex = 1;
             // 
             // panel21
@@ -1166,7 +1162,7 @@
             this.panel21.Location = new System.Drawing.Point(0, 0);
             this.panel21.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel21.Name = "panel21";
-            this.panel21.Size = new System.Drawing.Size(1437, 197);
+            this.panel21.Size = new System.Drawing.Size(1437, 200);
             this.panel21.TabIndex = 0;
             // 
             // btnChiTiet
@@ -1300,7 +1296,7 @@
             // 
             this.panel7.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel7.Controls.Add(this.splitContainer4);
-            this.panel7.Location = new System.Drawing.Point(2, 7);
+            this.panel7.Location = new System.Drawing.Point(2, 8);
             this.panel7.Margin = new System.Windows.Forms.Padding(0);
             this.panel7.MinimumSize = new System.Drawing.Size(1464, 69);
             this.panel7.Name = "panel7";
@@ -1361,7 +1357,7 @@
             this.tabNhanVien.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
             this.tabNhanVien.Name = "tabNhanVien";
             this.tabNhanVien.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabNhanVien.Size = new System.Drawing.Size(1550, 767);
+            this.tabNhanVien.Size = new System.Drawing.Size(1550, 770);
             this.tabNhanVien.TabIndex = 3;
             this.tabNhanVien.Text = " Nhân viên ";
             this.tabNhanVien.UseVisualStyleBackColor = true;
@@ -1374,7 +1370,7 @@
             this.panel8.Location = new System.Drawing.Point(3, 3);
             this.panel8.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(1544, 761);
+            this.panel8.Size = new System.Drawing.Size(1544, 764);
             this.panel8.TabIndex = 0;
             // 
             // panel22
@@ -1383,7 +1379,7 @@
             this.panel22.BackColor = System.Drawing.Color.Gray;
             this.panel22.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel22.Controls.Add(this.splitContainer11);
-            this.panel22.Location = new System.Drawing.Point(23, 95);
+            this.panel22.Location = new System.Drawing.Point(23, 96);
             this.panel22.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel22.Name = "panel22";
             this.panel22.Size = new System.Drawing.Size(1439, 620);
@@ -1405,7 +1401,7 @@
             // 
             this.splitContainer11.Panel2.Controls.Add(this.panel24);
             this.splitContainer11.Size = new System.Drawing.Size(1437, 618);
-            this.splitContainer11.SplitterDistance = 418;
+            this.splitContainer11.SplitterDistance = 415;
             this.splitContainer11.SplitterWidth = 6;
             this.splitContainer11.TabIndex = 0;
             // 
@@ -1417,7 +1413,7 @@
             this.panel23.Location = new System.Drawing.Point(0, 0);
             this.panel23.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel23.Name = "panel23";
-            this.panel23.Size = new System.Drawing.Size(1437, 418);
+            this.panel23.Size = new System.Drawing.Size(1437, 415);
             this.panel23.TabIndex = 0;
             // 
             // dgvDataNV
@@ -1464,7 +1460,7 @@
             this.dgvDataNV.RowTemplate.Height = 32;
             this.dgvDataNV.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvDataNV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDataNV.Size = new System.Drawing.Size(1437, 418);
+            this.dgvDataNV.Size = new System.Drawing.Size(1437, 415);
             this.dgvDataNV.TabIndex = 2;
             // 
             // panel24
@@ -1484,7 +1480,7 @@
             this.panel24.Location = new System.Drawing.Point(0, 0);
             this.panel24.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel24.Name = "panel24";
-            this.panel24.Size = new System.Drawing.Size(1437, 194);
+            this.panel24.Size = new System.Drawing.Size(1437, 197);
             this.panel24.TabIndex = 0;
             // 
             // label13
@@ -1614,7 +1610,7 @@
             // 
             this.splitContainer5.Panel2.Controls.Add(this.label5);
             this.splitContainer5.Size = new System.Drawing.Size(1472, 69);
-            this.splitContainer5.SplitterDistance = 84;
+            this.splitContainer5.SplitterDistance = 123;
             this.splitContainer5.SplitterWidth = 6;
             this.splitContainer5.TabIndex = 0;
             // 
@@ -1627,7 +1623,7 @@
             this.pictureBox5.Location = new System.Drawing.Point(0, 0);
             this.pictureBox5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(84, 69);
+            this.pictureBox5.Size = new System.Drawing.Size(123, 69);
             this.pictureBox5.TabIndex = 0;
             this.pictureBox5.TabStop = false;
             // 
@@ -1640,10 +1636,11 @@
             this.label5.Location = new System.Drawing.Point(0, 0);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(1382, 69);
+            this.label5.Size = new System.Drawing.Size(1343, 69);
             this.label5.TabIndex = 0;
             this.label5.Text = "-- > QUẢN LÝ NHÂN VIÊN < --";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // tabNCC
             // 
@@ -1652,7 +1649,7 @@
             this.tabNCC.Location = new System.Drawing.Point(4, 41);
             this.tabNCC.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabNCC.Name = "tabNCC";
-            this.tabNCC.Size = new System.Drawing.Size(1550, 767);
+            this.tabNCC.Size = new System.Drawing.Size(1550, 770);
             this.tabNCC.TabIndex = 7;
             this.tabNCC.Text = "Nhà CC";
             this.tabNCC.UseVisualStyleBackColor = true;
@@ -1665,7 +1662,7 @@
             this.panel32.Location = new System.Drawing.Point(0, 0);
             this.panel32.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel32.Name = "panel32";
-            this.panel32.Size = new System.Drawing.Size(1550, 767);
+            this.panel32.Size = new System.Drawing.Size(1550, 770);
             this.panel32.TabIndex = 1;
             // 
             // panel33
@@ -1696,7 +1693,7 @@
             // 
             this.splitContainer14.Panel2.Controls.Add(this.panel35);
             this.splitContainer14.Size = new System.Drawing.Size(1437, 618);
-            this.splitContainer14.SplitterDistance = 418;
+            this.splitContainer14.SplitterDistance = 415;
             this.splitContainer14.SplitterWidth = 6;
             this.splitContainer14.TabIndex = 0;
             // 
@@ -1708,7 +1705,7 @@
             this.panel34.Location = new System.Drawing.Point(0, 0);
             this.panel34.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel34.Name = "panel34";
-            this.panel34.Size = new System.Drawing.Size(1437, 418);
+            this.panel34.Size = new System.Drawing.Size(1437, 415);
             this.panel34.TabIndex = 0;
             // 
             // dgvDataNCC
@@ -1755,7 +1752,7 @@
             this.dgvDataNCC.RowTemplate.Height = 32;
             this.dgvDataNCC.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvDataNCC.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDataNCC.Size = new System.Drawing.Size(1437, 418);
+            this.dgvDataNCC.Size = new System.Drawing.Size(1437, 415);
             this.dgvDataNCC.TabIndex = 2;
             // 
             // panel35
@@ -1775,7 +1772,7 @@
             this.panel35.Location = new System.Drawing.Point(0, 0);
             this.panel35.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel35.Name = "panel35";
-            this.panel35.Size = new System.Drawing.Size(1437, 194);
+            this.panel35.Size = new System.Drawing.Size(1437, 197);
             this.panel35.TabIndex = 0;
             // 
             // label14
@@ -1906,7 +1903,7 @@
             // 
             this.splitContainer15.Panel2.Controls.Add(this.label8);
             this.splitContainer15.Size = new System.Drawing.Size(1478, 69);
-            this.splitContainer15.SplitterDistance = 84;
+            this.splitContainer15.SplitterDistance = 120;
             this.splitContainer15.SplitterWidth = 6;
             this.splitContainer15.TabIndex = 0;
             // 
@@ -1919,7 +1916,7 @@
             this.pictureBox10.Location = new System.Drawing.Point(0, 0);
             this.pictureBox10.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox10.Name = "pictureBox10";
-            this.pictureBox10.Size = new System.Drawing.Size(84, 69);
+            this.pictureBox10.Size = new System.Drawing.Size(120, 69);
             this.pictureBox10.TabIndex = 0;
             this.pictureBox10.TabStop = false;
             // 
@@ -1932,7 +1929,7 @@
             this.label8.Location = new System.Drawing.Point(0, 0);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(1388, 69);
+            this.label8.Size = new System.Drawing.Size(1352, 69);
             this.label8.TabIndex = 0;
             this.label8.Text = "-- > QUẢN LÝ NHÀ CUNG CẤP < --";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1945,7 +1942,7 @@
             this.tabTKBC.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
             this.tabTKBC.Name = "tabTKBC";
             this.tabTKBC.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabTKBC.Size = new System.Drawing.Size(1550, 767);
+            this.tabTKBC.Size = new System.Drawing.Size(1550, 770);
             this.tabTKBC.TabIndex = 4;
             this.tabTKBC.Text = "Thống kê-Báo cáo";
             this.tabTKBC.UseVisualStyleBackColor = true;
@@ -1957,7 +1954,7 @@
             this.panel10.Location = new System.Drawing.Point(3, 3);
             this.panel10.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(1544, 761);
+            this.panel10.Size = new System.Drawing.Size(1544, 764);
             this.panel10.TabIndex = 0;
             // 
             // panel11
@@ -1987,7 +1984,7 @@
             // 
             this.splitContainer6.Panel2.Controls.Add(this.label6);
             this.splitContainer6.Size = new System.Drawing.Size(1472, 69);
-            this.splitContainer6.SplitterDistance = 84;
+            this.splitContainer6.SplitterDistance = 118;
             this.splitContainer6.SplitterWidth = 6;
             this.splitContainer6.TabIndex = 0;
             // 
@@ -2000,7 +1997,7 @@
             this.pictureBox6.Location = new System.Drawing.Point(0, 0);
             this.pictureBox6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(84, 69);
+            this.pictureBox6.Size = new System.Drawing.Size(118, 69);
             this.pictureBox6.TabIndex = 0;
             this.pictureBox6.TabStop = false;
             // 
@@ -2013,7 +2010,7 @@
             this.label6.Location = new System.Drawing.Point(0, 0);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(1382, 69);
+            this.label6.Size = new System.Drawing.Size(1348, 69);
             this.label6.TabIndex = 0;
             this.label6.Text = "-- > THỐNG KÊ - BÁO CÁO < --";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2026,7 +2023,7 @@
             this.tabHeThong.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
             this.tabHeThong.Name = "tabHeThong";
             this.tabHeThong.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabHeThong.Size = new System.Drawing.Size(1550, 767);
+            this.tabHeThong.Size = new System.Drawing.Size(1550, 770);
             this.tabHeThong.TabIndex = 5;
             this.tabHeThong.Text = "Quản lý sao lưu ";
             this.tabHeThong.UseVisualStyleBackColor = true;
@@ -2039,76 +2036,87 @@
             this.panel12.Location = new System.Drawing.Point(3, 3);
             this.panel12.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(1544, 761);
+            this.panel12.Size = new System.Drawing.Size(1544, 764);
             this.panel12.TabIndex = 0;
             // 
             // panel28
             // 
             this.panel28.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel28.BackColor = System.Drawing.Color.Gray;
+            this.panel28.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.panel28.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel28.Controls.Add(this.splitContainer13);
-            this.panel28.Location = new System.Drawing.Point(23, 92);
+            this.panel28.Controls.Add(this.label16);
+            this.panel28.Controls.Add(this.label15);
+            this.panel28.Controls.Add(this.listView1);
+            this.panel28.Controls.Add(this.listBox1);
+            this.panel28.Controls.Add(this.btnPhucHoi);
+            this.panel28.Controls.Add(this.btnLuuLai);
+            this.panel28.Location = new System.Drawing.Point(23, 93);
             this.panel28.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel28.Name = "panel28";
             this.panel28.Size = new System.Drawing.Size(1439, 620);
             this.panel28.TabIndex = 2;
             // 
-            // splitContainer13
+            // label16
             // 
-            this.splitContainer13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer13.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer13.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.splitContainer13.Name = "splitContainer13";
-            this.splitContainer13.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(962, 22);
+            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(229, 29);
+            this.label16.TabIndex = 5;
+            this.label16.Text = "Thời gian khôi phục:";
             // 
-            // splitContainer13.Panel1
+            // label15
             // 
-            this.splitContainer13.Panel1.Controls.Add(this.panel29);
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(186, 22);
+            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(243, 29);
+            this.label15.TabIndex = 4;
+            this.label15.Text = "Cơ sở dữ liệu hiện tại:";
             // 
-            // splitContainer13.Panel2
+            // listView1
             // 
-            this.splitContainer13.Panel2.Controls.Add(this.panel30);
-            this.splitContainer13.Size = new System.Drawing.Size(1437, 618);
-            this.splitContainer13.SplitterDistance = 413;
-            this.splitContainer13.SplitterWidth = 6;
-            this.splitContainer13.TabIndex = 0;
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(45, 71);
+            this.listView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(530, 353);
+            this.listView1.TabIndex = 3;
+            this.listView1.UseCompatibleStateImageBehavior = false;
             // 
-            // panel29
+            // listBox1
             // 
-            this.panel29.BackColor = System.Drawing.Color.PeachPuff;
-            this.panel29.Controls.Add(this.dataGridView5);
-            this.panel29.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel29.Location = new System.Drawing.Point(0, 0);
-            this.panel29.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.panel29.Name = "panel29";
-            this.panel29.Size = new System.Drawing.Size(1437, 413);
-            this.panel29.TabIndex = 0;
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 29;
+            this.listBox1.Location = new System.Drawing.Point(914, 71);
+            this.listBox1.Margin = new System.Windows.Forms.Padding(30, 31, 30, 31);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(394, 323);
+            this.listBox1.TabIndex = 2;
             // 
-            // dataGridView5
+            // btnPhucHoi
             // 
-            this.dataGridView5.AllowUserToAddRows = false;
-            this.dataGridView5.AllowUserToDeleteRows = false;
-            this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView5.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.dataGridView5.Name = "dataGridView5";
-            this.dataGridView5.ReadOnly = true;
-            this.dataGridView5.RowHeadersWidth = 62;
-            this.dataGridView5.Size = new System.Drawing.Size(1437, 413);
-            this.dataGridView5.TabIndex = 0;
+            this.btnPhucHoi.Location = new System.Drawing.Point(1002, 458);
+            this.btnPhucHoi.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnPhucHoi.Name = "btnPhucHoi";
+            this.btnPhucHoi.Size = new System.Drawing.Size(264, 52);
+            this.btnPhucHoi.TabIndex = 1;
+            this.btnPhucHoi.Text = "Phục hồi CSDL";
+            this.btnPhucHoi.UseVisualStyleBackColor = true;
+            this.btnPhucHoi.Click += new System.EventHandler(this.btnPhucHoi_Click);
             // 
-            // panel30
+            // btnLuuLai
             // 
-            this.panel30.BackColor = System.Drawing.Color.Gold;
-            this.panel30.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.panel30.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel30.Location = new System.Drawing.Point(0, 0);
-            this.panel30.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.panel30.Name = "panel30";
-            this.panel30.Size = new System.Drawing.Size(1437, 199);
-            this.panel30.TabIndex = 0;
+            this.btnLuuLai.Location = new System.Drawing.Point(207, 458);
+            this.btnLuuLai.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnLuuLai.Name = "btnLuuLai";
+            this.btnLuuLai.Size = new System.Drawing.Size(226, 52);
+            this.btnLuuLai.TabIndex = 0;
+            this.btnLuuLai.Text = "Sao lưu CSDL";
+            this.btnLuuLai.UseVisualStyleBackColor = true;
+            this.btnLuuLai.Click += new System.EventHandler(this.btnLuuLai_Click);
             // 
             // panel13
             // 
@@ -2137,7 +2145,7 @@
             // 
             this.splitContainer7.Panel2.Controls.Add(this.label7);
             this.splitContainer7.Size = new System.Drawing.Size(1472, 69);
-            this.splitContainer7.SplitterDistance = 84;
+            this.splitContainer7.SplitterDistance = 120;
             this.splitContainer7.SplitterWidth = 6;
             this.splitContainer7.TabIndex = 0;
             // 
@@ -2150,7 +2158,7 @@
             this.pictureBox7.Location = new System.Drawing.Point(0, 0);
             this.pictureBox7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(84, 69);
+            this.pictureBox7.Size = new System.Drawing.Size(120, 69);
             this.pictureBox7.TabIndex = 0;
             this.pictureBox7.TabStop = false;
             // 
@@ -2163,7 +2171,7 @@
             this.label7.Location = new System.Drawing.Point(0, 0);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(1382, 69);
+            this.label7.Size = new System.Drawing.Size(1346, 69);
             this.label7.TabIndex = 0;
             this.label7.Text = "-- > QUẢN LÝ SAO LƯU < --";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2176,7 +2184,7 @@
             this.tabAbout.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
             this.tabAbout.Name = "tabAbout";
             this.tabAbout.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabAbout.Size = new System.Drawing.Size(1550, 767);
+            this.tabAbout.Size = new System.Drawing.Size(1550, 770);
             this.tabAbout.TabIndex = 6;
             this.tabAbout.Text = " >About< ";
             this.tabAbout.UseVisualStyleBackColor = true;
@@ -2206,6 +2214,7 @@
             this.linkLabel1.TabIndex = 5;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "https://github.com/Do-Hieu-Kid2D/QLBanHang_lv1";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // btnHoZo
             // 
@@ -2224,8 +2233,8 @@
             this.txtHoZo.Name = "txtHoZo";
             this.txtHoZo.Size = new System.Drawing.Size(496, 173);
             this.txtHoZo.TabIndex = 3;
-            this.txtHoZo.Text = "Ứng dụng của hàng quản lý - CopyCopyright © Do Hieu 2023 - Khả năng quản lý siêu " +
-    "cấp <>";
+            this.txtHoZo.Text = "Ứng dụng của hàng quản lý - Copyright © Do Hieu 2023 - Khả năng quản lý siêu cấp " +
+    "<>";
             // 
             // panel37
             // 
@@ -2268,7 +2277,7 @@
             this.pictureBox9.Location = new System.Drawing.Point(688, 194);
             this.pictureBox9.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(597, 514);
+            this.pictureBox9.Size = new System.Drawing.Size(378, 514);
             this.pictureBox9.TabIndex = 1;
             this.pictureBox9.TabStop = false;
             // 
@@ -2410,12 +2419,7 @@
             this.tabHeThong.ResumeLayout(false);
             this.panel12.ResumeLayout(false);
             this.panel28.ResumeLayout(false);
-            this.splitContainer13.Panel1.ResumeLayout(false);
-            this.splitContainer13.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer13)).EndInit();
-            this.splitContainer13.ResumeLayout(false);
-            this.panel29.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).EndInit();
+            this.panel28.PerformLayout();
             this.panel13.ResumeLayout(false);
             this.splitContainer7.Panel1.ResumeLayout(false);
             this.splitContainer7.Panel2.ResumeLayout(false);
@@ -2500,10 +2504,6 @@
         private System.Windows.Forms.Button btnXoaNhanVien;
         private System.Windows.Forms.Button btnTimNV;
         private System.Windows.Forms.Panel panel28;
-        private System.Windows.Forms.SplitContainer splitContainer13;
-        private System.Windows.Forms.Panel panel29;
-        private System.Windows.Forms.DataGridView dataGridView5;
-        private System.Windows.Forms.Panel panel30;
         private System.Windows.Forms.Panel panel16;
         private System.Windows.Forms.SplitContainer splitContainer9;
         private System.Windows.Forms.Panel panel17;
@@ -2574,5 +2574,11 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Button btnChiTiet;
+        private System.Windows.Forms.Button btnLuuLai;
+        private System.Windows.Forms.Button btnPhucHoi;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label15;
     }
 }
