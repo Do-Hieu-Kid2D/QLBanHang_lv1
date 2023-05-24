@@ -47,7 +47,7 @@ namespace GUI
         public SqlCommand GetCmd(string sp_name, string action = null)
         {
             SqlCommand cmd = new SqlCommand(sp_name);
-            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandType = CommandType.StoredProcedure; 
             if (action != null)
                 cmd.Parameters.Add("@action", SqlDbType.NVarChar, 50).Value = action;
             return cmd;

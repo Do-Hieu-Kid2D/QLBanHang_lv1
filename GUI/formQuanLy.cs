@@ -33,6 +33,7 @@ namespace GUI
             txtTimNCC.ForeColor = Color.Gray; // Màu xám
             this.dgvDataMH.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             setUpRestore();
+            loadTrangThaiDB();
 
         }
         private void txtTimKiem_MouseClick(object sender, MouseEventArgs e)
@@ -42,6 +43,11 @@ namespace GUI
         }
 
         private void formQuanLy_Load(object sender, EventArgs e)
+        {
+            loadAllBang();
+        }
+
+        private void loadAllBang()
         {
             hienThiALLMatHang("");
             hienThiALLKhachHang("");
@@ -109,7 +115,7 @@ namespace GUI
             settingDgvMH();
         }
 
-        private void btnALlHang_Click(object sender, EventArgs e)
+        public void btnALlHang_Click(object sender, EventArgs e)
         {
             hienThiALLMatHang("");
         }
@@ -235,8 +241,8 @@ namespace GUI
                 return;
             }
             dgvDataNV.DataSource = data;
-            settingDgvNV();
             dgvDataNV.Rows[0].Selected = false;
+            settingDgvNV();
 
         }
 
@@ -1113,7 +1119,26 @@ namespace GUI
             System.Diagnostics.Process.Start("https://github.com/Do-Hieu-Kid2D/QLBanHang_lv1");
         }
 
-
+        public void loadTrangThaiDB()
+        {
+            // Đầu tiên lấy data về đã:
+            SqlServer libDB = new SqlServer(strCon);
+            string query = "THONG_KE_TONG";
+            SqlCommand cm = libDB.GetCmd(query);
+            DataTable data = new DataTable();
+            try
+            {
+               data =  libDB.Query(cm);
+            }catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message); return;
+            }
+            txtTongMH.Text = data.Rows[0][0].ToString();
+            txtTongKH.Text = data.Rows[0][1].ToString();
+            txtSLDonHang.Text = data.Rows[0][2].ToString();
+            txtSLNhanVien.Text =data.Rows[0][3].ToString();
+            txtSLNhaCC.Text =data.Rows[0][4].ToString();
+        }
 
         private void btnLuuLai_Click(object sender, EventArgs e)
         {
@@ -1137,7 +1162,7 @@ namespace GUI
             try
             {
                 // Tạo chuỗi query!
-                string tenDB = "Cuoi";
+                string tenDB = "QLY";
                 string query = $"BACKUP DATABASE {tenDB} TO DISK = '{duongdanBackup}' WITH INIT, FORMAT;";
                 // oke backup lại thôi
                 SqlServer libDB = new SqlServer(strCon);
@@ -1178,14 +1203,16 @@ namespace GUI
                 try
                 {
                     // Oke backup thôi
-                    SqlServer libDB = new SqlServer(strCon);
-                    string tenDB = "Cuoi";
+                    SqlServer libDB = new SqlServer(strCon); // sử dụng Thư viện anh Cốp viết
+                    string tenDB = "QLY";
                     string query = $"use master" +
                         $" ALTER DATABASE {tenDB} SET SINGLE_USER WITH ROLLBACK IMMEDIATE;" +
                         $" RESTORE DATABASE {tenDB} FROM DISK = '{duongDanBackUp}' WITH REPLACE;";
                     SqlCommand cmd = libDB.GetCmdSQLChay(query);
                     int kq = libDB.QueryNon(cmd);
                     MessageBox.Show($"Đã khôi phục CSDL về trạng thái ngày: {bienx}.", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
+                    Refresh_Click(sender, e);
+                   
 
                 }
                 catch (Exception ex)
@@ -1234,6 +1261,12 @@ namespace GUI
             }
             listBox1.SelectedIndex = -1;
 
+        }
+
+        private void Refresh_Click(object sender, EventArgs e)
+        {
+            loadTrangThaiDB();
+            loadAllBang();
         }
     }
 }

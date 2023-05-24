@@ -33,22 +33,22 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.labChucNang = new System.Windows.Forms.Label();
             this.panBody = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.btnTaoHoaDon = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnNhanVien = new System.Windows.Forms.Button();
             this.btnThemKhachHang = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnDangXuat = new System.Windows.Forms.Button();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panBody.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -66,7 +66,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.panBody);
-            this.splitContainer1.Size = new System.Drawing.Size(685, 561);
+            this.splitContainer1.Size = new System.Drawing.Size(664, 561);
             this.splitContainer1.SplitterDistance = 49;
             this.splitContainer1.TabIndex = 1;
             // 
@@ -76,17 +76,18 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(685, 49);
+            this.panel2.Size = new System.Drawing.Size(664, 49);
             this.panel2.TabIndex = 0;
             // 
             // labChucNang
             // 
             this.labChucNang.BackColor = System.Drawing.Color.BurlyWood;
+            this.labChucNang.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.labChucNang.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labChucNang.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labChucNang.Location = new System.Drawing.Point(0, 0);
             this.labChucNang.Name = "labChucNang";
-            this.labChucNang.Size = new System.Drawing.Size(685, 49);
+            this.labChucNang.Size = new System.Drawing.Size(664, 49);
             this.labChucNang.TabIndex = 0;
             this.labChucNang.Text = "Cửa Hàng Dkid";
             this.labChucNang.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -97,8 +98,17 @@
             this.panBody.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panBody.Location = new System.Drawing.Point(0, 0);
             this.panBody.Name = "panBody";
-            this.panBody.Size = new System.Drawing.Size(685, 508);
+            this.panBody.Size = new System.Drawing.Size(664, 508);
             this.panBody.TabIndex = 0;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::GUI.Properties.Resources.store;
+            this.pictureBox2.Location = new System.Drawing.Point(148, 34);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(392, 319);
+            this.pictureBox2.TabIndex = 0;
+            this.pictureBox2.TabStop = false;
             // 
             // btnTaoHoaDon
             // 
@@ -110,7 +120,7 @@
             this.btnTaoHoaDon.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTaoHoaDon.Location = new System.Drawing.Point(0, 87);
             this.btnTaoHoaDon.Name = "btnTaoHoaDon";
-            this.btnTaoHoaDon.Size = new System.Drawing.Size(149, 40);
+            this.btnTaoHoaDon.Size = new System.Drawing.Size(147, 40);
             this.btnTaoHoaDon.TabIndex = 4;
             this.btnTaoHoaDon.Text = "Lập hóa đơn";
             this.btnTaoHoaDon.UseVisualStyleBackColor = false;
@@ -119,6 +129,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.BurlyWood;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.btnNhanVien);
             this.panel1.Controls.Add(this.btnThemKhachHang);
             this.panel1.Controls.Add(this.btnTaoHoaDon);
@@ -154,7 +165,7 @@
             this.btnThemKhachHang.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnThemKhachHang.Location = new System.Drawing.Point(0, 127);
             this.btnThemKhachHang.Name = "btnThemKhachHang";
-            this.btnThemKhachHang.Size = new System.Drawing.Size(149, 45);
+            this.btnThemKhachHang.Size = new System.Drawing.Size(147, 45);
             this.btnThemKhachHang.TabIndex = 5;
             this.btnThemKhachHang.Text = "Thêm khách hàng";
             this.btnThemKhachHang.UseVisualStyleBackColor = false;
@@ -169,7 +180,7 @@
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(149, 87);
+            this.pictureBox1.Size = new System.Drawing.Size(147, 87);
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
@@ -189,23 +200,14 @@
             this.btnDangXuat.UseVisualStyleBackColor = false;
             this.btnDangXuat.Click += new System.EventHandler(this.btnDangXuat_Click);
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::GUI.Properties.Resources.store;
-            this.pictureBox2.Location = new System.Drawing.Point(148, 34);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(392, 319);
-            this.pictureBox2.TabIndex = 0;
-            this.pictureBox2.TabStop = false;
-            // 
             // formNhanVien
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(834, 561);
+            this.ClientSize = new System.Drawing.Size(813, 561);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(800, 600);
+            this.MinimumSize = new System.Drawing.Size(829, 600);
             this.Name = "formNhanVien";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cửa hàng Dkid";
@@ -215,9 +217,9 @@
             this.splitContainer1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panBody.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
         }

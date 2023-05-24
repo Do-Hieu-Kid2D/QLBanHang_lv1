@@ -238,6 +238,7 @@ namespace GUI
                         string kq = fQL.them1MatHang(mh);  
                         if(kq.EndsWith("thành công!"))
                         {
+                            //fQL.loadTrangThaiDB();
                             fQL.hienThiALLMatHang("");
                             MessageBox.Show(kq, "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             button3_Click(sender, e);

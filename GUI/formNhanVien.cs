@@ -1,4 +1,5 @@
-﻿using Project_CSDLBanHang;
+﻿using DTO;
+using Project_CSDLBanHang;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,13 +15,16 @@ namespace GUI
     public partial class formNhanVien : Form
     {
         formDangNhap fDN;
-        public formNhanVien(formDangNhap dangNhap)
+        string tenDN ;
+        public formNhanVien(formDangNhap dangNhap, string  tebDNnv)
         {
             InitializeComponent();
             fDN = dangNhap;
             this.StartPosition = FormStartPosition.CenterScreen;
             this.Size = new Size(800, 600);
             labChucNang.Text = "--- > Cửa hàng Dkid < ---";
+            this.tenDN = tebDNnv;
+
         }
         private void btnDangXuat_Click(object sender, EventArgs e)
         {
@@ -58,7 +62,7 @@ namespace GUI
         {
             labChucNang.Text = "--- > LẬP HÓA ĐƠN < ---";
             this.labChucNang.BackColor = System.Drawing.Color.SpringGreen;
-            moFormCon(new fLapHoaDon());
+            moFormCon(new fLapHoaDon(tenDN));
 
         }
         private void btnThemKhachHang_Click(object sender, EventArgs e)

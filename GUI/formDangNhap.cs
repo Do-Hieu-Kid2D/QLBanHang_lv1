@@ -60,7 +60,7 @@ namespace Project_CSDLBanHang
                 NhanVienDTO nhanVien = NhanVienBLL.dangNhapNhanVien(taiKhoan, matKhau);
                 if (nhanVien != null)
                 {
-                    formNhanVien formNhanVien = new formNhanVien(this);
+                    formNhanVien formNhanVien = new formNhanVien(this,taiKhoan);
                     this.txtMatKhau.Text = "";
                     this.txtTaiKhoan.Text = "";
                     this.Hide();
