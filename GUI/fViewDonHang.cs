@@ -1,18 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-using System.Data.Common;
+using System.Globalization;
 
 namespace GUI
 {
-    
+
     public partial class fViewDonHang : Form
     {
         static string strCon = Properties.Settings.Default.strCon;
@@ -23,7 +18,7 @@ namespace GUI
             InitializeComponent();
             this.soDHCanView = soHD;
             this.StartPosition = FormStartPosition.CenterParent;
-            labTitle.Text = $"--  CHI TIẾT ĐƠN HÀNG: {soHD.ToUpper()}  --";
+            labTitle.Text = $"--  CHI TIẾT ĐƠN HÀNG: {soHD}  --";
         }
 
         private void fViewDonHang_Load(object sender, EventArgs e)
@@ -38,7 +33,31 @@ namespace GUI
             SqlCommand cmd = liBSQL.GetCmd(query, action);
             setParameter(ref cmd); // thường thì sẽ truyền theo sau 1 class để vào hàm lấy giá trị ra để set
             displayData(cmd);
+            hienThiTongTien();
 
+        }
+
+        private void hienThiTongTien()
+        {
+            SqlServer libDB = new SqlServer(Properties.Settings.Default.strCon);
+            string query = $"select tongTien from dondathang where soHoaDon = '{soDHCanView}'";
+            SqlCommand cmd = libDB.GetCmdSQLChay(query);
+            try
+            {
+                object kq = libDB.Scalar(cmd);
+                if(kq == null)
+                {
+                    labTongTien.Text = "---";
+                    return;
+                }
+                decimal tongTien = Convert.ToDecimal(kq);
+                string formatTongTien = tongTien.ToString("N0", new NumberFormatInfo { NumberGroupSeparator = ".", NumberDecimalDigits = 0 });
+                labTongTien.Text = formatTongTien + " VNĐ";
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         private void setParameter(ref SqlCommand cmd)

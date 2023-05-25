@@ -107,7 +107,7 @@
             this.labTongTien.Name = "labTongTien";
             this.labTongTien.Size = new System.Drawing.Size(238, 23);
             this.labTongTien.TabIndex = 6;
-            this.labTongTien.Text = "1000000000";
+            this.labTongTien.Text = "  --- VNĐ";
             this.labTongTien.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panel1

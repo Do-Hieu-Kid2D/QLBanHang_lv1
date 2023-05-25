@@ -34,7 +34,8 @@ namespace GUI
             this.dgvDataMH.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             setUpRestore();
             loadTrangThaiDB();
-
+            panel31.BackColor = Color.Transparent;
+            panel31.BackColor = Color.FromArgb(70, Color.White);
         }
         private void txtTimKiem_MouseClick(object sender, MouseEventArgs e)
         {
@@ -1162,7 +1163,7 @@ namespace GUI
             try
             {
                 // Tạo chuỗi query!
-                string tenDB = "QLY";
+                string tenDB = "BanHanglv1";
                 string query = $"BACKUP DATABASE {tenDB} TO DISK = '{duongdanBackup}' WITH INIT, FORMAT;";
                 // oke backup lại thôi
                 SqlServer libDB = new SqlServer(strCon);
@@ -1204,7 +1205,7 @@ namespace GUI
                 {
                     // Oke backup thôi
                     SqlServer libDB = new SqlServer(strCon); // sử dụng Thư viện anh Cốp viết
-                    string tenDB = "QLY";
+                    string tenDB = "BanHanglv1";
                     string query = $"use master" +
                         $" ALTER DATABASE {tenDB} SET SINGLE_USER WITH ROLLBACK IMMEDIATE;" +
                         $" RESTORE DATABASE {tenDB} FROM DISK = '{duongDanBackUp}' WITH REPLACE;";
@@ -1267,6 +1268,29 @@ namespace GUI
         {
             loadTrangThaiDB();
             loadAllBang();
+        }
+        int a = 0;
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+           
+            if(a== 0)
+            {
+                picThangHieu.BackgroundImage = global::GUI.Properties.Resources.dfd8dabcc3d01a8e43c1;
+                a++;
+                return;
+            }
+            if (a == 1)
+            {
+                picThangHieu.BackgroundImage = global::GUI.Properties.Resources._1fe739a32dcff491adde;
+                a++;
+                return;
+            }
+            if (a == 2)
+            {
+                picThangHieu.BackgroundImage = global::GUI.Properties.Resources._50bbfcb39552530c0a43;
+                a = 0;
+                return;
+            }
         }
     }
 }

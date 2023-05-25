@@ -43,6 +43,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnHuyTao = new System.Windows.Forms.Button();
             this.labTongTien = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.btnHoanThanhDonHang = new System.Windows.Forms.Button();
@@ -57,6 +58,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cbxSanPham = new System.Windows.Forms.ComboBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -212,6 +214,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.button1);
+            this.groupBox2.Controls.Add(this.btnHuyTao);
             this.groupBox2.Controls.Add(this.labTongTien);
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.btnHoanThanhDonHang);
@@ -231,11 +235,23 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Thêm sản phẩm cho đơn hàng:";
             // 
+            // btnHuyTao
+            // 
+            this.btnHuyTao.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.btnHuyTao.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnHuyTao.Location = new System.Drawing.Point(419, 253);
+            this.btnHuyTao.Name = "btnHuyTao";
+            this.btnHuyTao.Size = new System.Drawing.Size(86, 39);
+            this.btnHuyTao.TabIndex = 49;
+            this.btnHuyTao.Text = "Hủy tạo";
+            this.btnHuyTao.UseVisualStyleBackColor = false;
+            this.btnHuyTao.Click += new System.EventHandler(this.btnHuyTao_Click);
+            // 
             // labTongTien
             // 
             this.labTongTien.Location = new System.Drawing.Point(91, 265);
             this.labTongTien.Name = "labTongTien";
-            this.labTongTien.Size = new System.Drawing.Size(187, 18);
+            this.labTongTien.Size = new System.Drawing.Size(157, 18);
             this.labTongTien.TabIndex = 48;
             this.labTongTien.Text = "...VNĐ";
             // 
@@ -250,11 +266,11 @@
             // 
             // btnHoanThanhDonHang
             // 
-            this.btnHoanThanhDonHang.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btnHoanThanhDonHang.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnHoanThanhDonHang.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnHoanThanhDonHang.Location = new System.Drawing.Point(413, 253);
+            this.btnHoanThanhDonHang.Location = new System.Drawing.Point(263, 253);
             this.btnHoanThanhDonHang.Name = "btnHoanThanhDonHang";
-            this.btnHoanThanhDonHang.Size = new System.Drawing.Size(189, 38);
+            this.btnHoanThanhDonHang.Size = new System.Drawing.Size(134, 38);
             this.btnHoanThanhDonHang.TabIndex = 46;
             this.btnHoanThanhDonHang.Text = "CHỐT ĐƠN";
             this.btnHoanThanhDonHang.UseVisualStyleBackColor = false;
@@ -362,6 +378,18 @@
             this.cbxSanPham.Size = new System.Drawing.Size(224, 26);
             this.cbxSanPham.TabIndex = 37;
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.Location = new System.Drawing.Point(531, 253);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(78, 38);
+            this.button1.TabIndex = 51;
+            this.button1.Text = "Clear All";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click_2);
+            // 
             // fLapHoaDon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -412,5 +440,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.Button btnHuyTao;
+        private System.Windows.Forms.Button button1;
     }
 }

@@ -26,7 +26,7 @@ namespace DAL.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DKID\\SEVERTEN;Initial Catalog=QLY;Integrated Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DKID\\SEVERTEN;Initial Catalog=BanHanglv1;Integrated Security=True")]
         public string strCon {
             get {
                 return ((string)(this["strCon"]));

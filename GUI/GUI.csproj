@@ -225,6 +225,8 @@
     </Content>
     <None Include="Resources\order.png" />
     <None Include="Resources\order %281%29.png" />
+    <None Include="Resources\1fe739a32dcff491adde.jpg" />
+    <None Include="Resources\50bbfcb39552530c0a43.jpg" />
     <Content Include="sound\text_sang_nhac.py">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -52,6 +52,13 @@ namespace GUI
                 cmd.Parameters.Add("@action", SqlDbType.NVarChar, 50).Value = action;
             return cmd;
         }
+
+        public SqlCommand GetCmdKac(string sp_name)
+        {
+            SqlCommand cmd = new SqlCommand(sp_name);
+            cmd.CommandType = CommandType.StoredProcedure;
+            return cmd;
+        }
         /// <summary>
         /// hàm thực thi sql đặt trong OleDbCommand
         /// </summary>

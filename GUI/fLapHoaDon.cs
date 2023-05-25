@@ -1,20 +1,13 @@
 ﻿using BLL;
 using DTO;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Data.SqlTypes;
-using System.Drawing;
 using System.Globalization;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+
 
 namespace GUI
 {
@@ -202,6 +195,7 @@ namespace GUI
             DoADD();
         }
 
+
         private void DoADD()
         {
             layThongTinForm();
@@ -223,7 +217,7 @@ namespace GUI
             if (kq.EndsWith("thành công!"))
             {
                 fQL.hienThiAllDonHang("");
-                MessageBox.Show($"Tạo đơn hàng thành công! Hãy thêm sản phẩm cho đơn hàng này.", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"Thông tin đơn hàng hợp lệ! Hãy thêm sản phẩm cho đơn hàng này.", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 groupBox1.Enabled = false;
                 coDonRoi = true;
                 if (coDonRoi)
@@ -292,12 +286,13 @@ namespace GUI
         {
             return soHD != "" && maKH != "" && maNV != "" && maHTTT != "" && diaChiGiaoHang != "";
         }
-
+        List<string> list = new List<string>();
         private void btnThemSP_Click(object sender, EventArgs e)
         {
+            
             if (cbxSanPham.SelectedIndex < 0)
             {
-                MessageBox.Show("Bạn chưa chọn mặt hàng hàng.", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Bạn chưa chọn mặt hàng.", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (txtSoLuong.Text == "")
@@ -309,6 +304,19 @@ namespace GUI
             int soLuongMHThem = 1;
             decimal giamGiaMHTHem = 0;
             Boolean ok = layMatHangMuonTHem(ref tenMHThem, ref soLuongMHThem, ref giamGiaMHTHem);
+            int count = 0;
+            foreach(string item in list)
+            {
+                if(tenMHThem == item)
+                {
+                    count++;
+                }
+                if (tenMHThem == item && count == 2)
+                {
+                    MessageBox.Show("Bạn cần chọn mặt hàng khác!", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
             if (!ok) return;
             // Có data rồi thì đưa lên listView!
             ListViewItem lvi = new ListViewItem(tenMHThem);
@@ -340,6 +348,7 @@ namespace GUI
                 return false;
             }
             tenMHThem = dataTable.Rows[ttMatHangDangChon][1].ToString();
+            list.Add(tenMHThem);
             try
             {
                 soLuongMHThem = Convert.ToInt32(txtSoLuong.Text.ToString());
@@ -364,6 +373,8 @@ namespace GUI
         {
             // Khi ấn chốt đơn cần lấy tổng tiền update vào đơn hàng vừa tạo
             // thêm các thằng trên list view vào bảng chi tiết đơn hàng!
+            DialogResult chon = MessageBox.Show("Hoàn thành tạo đơn hàng?", "Thông báo!", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton. Button1);
+            if (chon == DialogResult.No) return;
             try
             {
 
@@ -393,7 +404,8 @@ namespace GUI
                     }
 
                 }
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message + " Lỗi j đó khi CHỐT ĐƠN", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -415,6 +427,7 @@ namespace GUI
             dateDatHang.Value = DateTime.Now;
             dateGiaoHang.Value = DateTime.Now;
             groupBox1.Visible = true;
+            groupBox1.Enabled = true;
             groupBox2.Visible = false;
 
         }
@@ -424,24 +437,29 @@ namespace GUI
             // Biến đổi số lượng và giảm giá đã
             int soLuongINT = Convert.ToInt32(soLuong);
             decimal giamGiaDEC = Convert.ToDecimal(giamGia);
-            string query = $"INSERT INTO [dbo].[CHITIETDONHANG]" +
-                $"([soHoaDon],[maHang],[soLuong],[mucGiamGia])" +
-                $"VALUES('{soHD}','{maHang}',{soLuongINT},{giamGiaDEC})";
+            giamGiaDEC = giamGiaDEC / 100;
             try
             {
-                libDB.RunSQL(query);
+                string query = "themCHiTietDonHang";
+                SqlCommand cmd = libDB.GetCmdKac(query);
+                cmd.Parameters.Add("@soHD",SqlDbType.NVarChar,20).Value = soHD;
+                cmd.Parameters.Add("@sl",SqlDbType.Int).Value = soLuongINT;
+                cmd.Parameters.Add("@maHang",SqlDbType.NVarChar,20).Value = maHang;
+                cmd.Parameters.Add("@giamGia",SqlDbType.Real).Value = giamGiaDEC;
+
+                libDB.RunSQL(cmd);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message + "Lỗi j đó khi lưu chi tiết đơn hàng", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            
+
         }
 
         private void luuTongTienXuong(string tienCanLuu)
         {
-            string query = $"update  dondathang  set tongTien = '{tienCanLuu}' where soHoaDon = '{txtSoHD.Text}'";
+            string query = $"update dondathang  set tongTien = '{tienCanLuu}' where soHoaDon = '{txtSoHD.Text}'";
             try
             {
                 libDB.RunSQL(query);
@@ -450,6 +468,24 @@ namespace GUI
             {
                 MessageBox.Show(ex.Message + " Lỗi j đó khi lưu tổng tiền", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btnHuyTao_Click(object sender, EventArgs e)
+        {
+           DialogResult chon = MessageBox.Show("Bạn muốn hủy quá trình tạo đơn hàng", "Thông báo!", MessageBoxButtons.YesNo, MessageBoxIcon.Question,MessageBoxDefaultButton.Button2);
+            if(chon == DialogResult.Yes)
+            {
+                string query = $"delete from dondathang where soHoaDon = '{soHD}'";
+                SqlCommand cmd = libDB.GetCmdSQLChay(query);
+                libDB.QueryNon(cmd);
+                resetTatCa();
+            }
+        }
+
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            livSanPhamDonHang.Items.Clear();
+            labTongTien.Text = "--- VNĐ";
         }
     }
 }
