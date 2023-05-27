@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using BLL;
 using DTO;
+using BotBanHang;
 using GUI;
 
 namespace Project_CSDLBanHang
@@ -12,6 +13,7 @@ namespace Project_CSDLBanHang
         public formDangNhap()
         {
             InitializeComponent();
+            BotBanHang.formBot formBot = new BotBanHang.formBot();
         }
 
 

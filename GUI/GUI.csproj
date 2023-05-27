@@ -212,6 +212,10 @@
       <Project>{08b75f00-5326-4615-b8cc-e930bfb3b34b}</Project>
       <Name>BLL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BotBanHang\BotBanHang.csproj">
+      <Project>{a979a3dd-8865-45c5-9181-cd1e0c8caafa}</Project>
+      <Name>BotBanHang</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DTO\DTO.csproj">
       <Project>{058c4d50-643a-4398-9b7d-697f5e3d6c84}</Project>
       <Name>DTO</Name>
