@@ -46,7 +46,19 @@ namespace GUI
         private void formQuanLy_Load(object sender, EventArgs e)
         {
             loadAllBang();
+            setPickDateThang();
         }
+
+        private void setPickDateThang()
+        {
+            pickDateThang.Format = DateTimePickerFormat.Custom;
+            pickDateThang.CustomFormat = "MM/yyyy";
+            pickDateThang.ValueChanged += (sender, e) =>
+            {
+                pickDateThang.Value = new DateTime(pickDateThang.Value.Year, pickDateThang.Value.Month, 1);
+            };
+        }
+
 
         private void loadAllBang()
         {

@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{0
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUI", "GUI\GUI.csproj", "{135EC6A7-F9C4-45CB-9823-262F4B0CB9D5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BotBanHang", "BotBanHang\BotBanHang.csproj", "{9929DE14-2ED7-4951-8569-B395EA096B5F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{135EC6A7-F9C4-45CB-9823-262F4B0CB9D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{135EC6A7-F9C4-45CB-9823-262F4B0CB9D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{135EC6A7-F9C4-45CB-9823-262F4B0CB9D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9929DE14-2ED7-4951-8569-B395EA096B5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9929DE14-2ED7-4951-8569-B395EA096B5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9929DE14-2ED7-4951-8569-B395EA096B5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9929DE14-2ED7-4951-8569-B395EA096B5F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
