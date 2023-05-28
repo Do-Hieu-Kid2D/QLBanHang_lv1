@@ -12,6 +12,8 @@ using Microsoft.SqlServer.Server;
 using System.IO;
 using static System.Net.WebRequestMethods;
 using System.ComponentModel;
+using Telegram.Bot;
+using BotBanHang;
 
 namespace GUI
 {
@@ -20,7 +22,9 @@ namespace GUI
         string strCon = Properties.Settings.Default.strCon;
         formDangNhap fDN;
         List<string> listFileBackup = new List<string>();
-        public formQuanLy(formDangNhap dangNhap)
+        formBot formBot;
+        string tenQL;
+        public formQuanLy(formDangNhap dangNhap, string tenQL)
         {
             InitializeComponent();
             fDN = dangNhap;
@@ -36,6 +40,8 @@ namespace GUI
             loadTrangThaiDB();
             panel31.BackColor = Color.Transparent;
             panel31.BackColor = Color.FromArgb(70, Color.White);
+            formBot = new formBot();
+            this.tenQL = tenQL;
         }
         private void txtTimKiem_MouseClick(object sender, MouseEventArgs e)
         {
@@ -47,6 +53,17 @@ namespace GUI
         {
             loadAllBang();
             setPickDateThang();
+            send("✅ ", $"Tài khoản: {tenQL} đã đăng nhập với tư cách là quản lý.");
+        }
+
+        private void send(string header, string txt)
+        {
+            string timenow = DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss tt");
+            formBot.botClient.SendTextMessageAsync(
+                chatId: formBot.chatId,
+                text: header + timenow + "\n" + txt,
+                parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown
+                );
         }
 
         private void setPickDateThang()
@@ -1141,16 +1158,17 @@ namespace GUI
             DataTable data = new DataTable();
             try
             {
-               data =  libDB.Query(cm);
-            }catch (Exception ex)
+                data = libDB.Query(cm);
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message); return;
             }
             txtTongMH.Text = data.Rows[0][0].ToString();
             txtTongKH.Text = data.Rows[0][1].ToString();
             txtSLDonHang.Text = data.Rows[0][2].ToString();
-            txtSLNhanVien.Text =data.Rows[0][3].ToString();
-            txtSLNhaCC.Text =data.Rows[0][4].ToString();
+            txtSLNhanVien.Text = data.Rows[0][3].ToString();
+            txtSLNhaCC.Text = data.Rows[0][4].ToString();
         }
 
         private void btnLuuLai_Click(object sender, EventArgs e)
@@ -1225,7 +1243,7 @@ namespace GUI
                     int kq = libDB.QueryNon(cmd);
                     MessageBox.Show($"Đã khôi phục CSDL về trạng thái ngày: {bienx}.", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
                     Refresh_Click(sender, e);
-                   
+
 
                 }
                 catch (Exception ex)
@@ -1284,8 +1302,8 @@ namespace GUI
         int a = 0;
         private void timer1_Tick(object sender, EventArgs e)
         {
-           
-            if(a== 0)
+
+            if (a == 0)
             {
                 picThangHieu.BackgroundImage = global::GUI.Properties.Resources.dfd8dabcc3d01a8e43c1;
                 a++;

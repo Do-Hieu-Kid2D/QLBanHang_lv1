@@ -1,4 +1,5 @@
 ﻿using BLL;
+using BotBanHang;
 using DTO;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Globalization;
 using System.Windows.Forms;
+using Telegram.Bot;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 
@@ -23,13 +25,14 @@ namespace GUI
         DateTime giaoHang;
         string tenDNNV;
         NhanVienDTO nhanVienHienTai;
-        formQuanLy fQL = new formQuanLy(new Project_CSDLBanHang.formDangNhap());
+        formQuanLy fQL = new formQuanLy(new Project_CSDLBanHang.formDangNhap(), "");
         SqlServer libDB = new SqlServer(Properties.Settings.Default.strCon);
         string strCon = Properties.Settings.Default.strCon;
         Boolean coDonRoi = false;
         Dictionary<string, decimal> mangGiaBan = new Dictionary<string, decimal>();
         Dictionary<string, string> mangmaHangTenHang = new Dictionary<string, string>();
-        Decimal tongTien = 0;
+        double tongTien = 0;
+        BotBanHang.formBot formBot;
         public fLapHoaDon(string tenDN)
         {
             InitializeComponent();
@@ -38,6 +41,7 @@ namespace GUI
             this.tenDNNV = tenDN;
             nhanVienHienTai = layNhanVienHienTai();
             groupBox2.Visible = false;
+            formBot = new formBot();
         }
 
         private void fLapHoaDon_Load(object sender, EventArgs e)
@@ -46,6 +50,17 @@ namespace GUI
             loadMangmaHangDonHang();
 
         }
+
+        private void send(string header, string txt)
+        {
+            string timenow = DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss tt");
+            formBot.botClient.SendTextMessageAsync(
+                chatId: formBot.chatId,
+                text: header + timenow + "\n" + txt,
+                parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown
+                );
+        }
+
 
         private void loadMangmaHangDonHang()
         {
@@ -302,7 +317,7 @@ namespace GUI
             }
             string tenMHThem = "";
             int soLuongMHThem = 1;
-            decimal giamGiaMHTHem = 0;
+            double giamGiaMHTHem = 0;
             Boolean ok = layMatHangMuonTHem(ref tenMHThem, ref soLuongMHThem, ref giamGiaMHTHem);
             int count = 0;
             foreach(string item in list)
@@ -317,6 +332,7 @@ namespace GUI
                     return;
                 }
             }
+
             if (!ok) return;
             // Có data rồi thì đưa lên listView!
             ListViewItem lvi = new ListViewItem(tenMHThem);
@@ -326,9 +342,9 @@ namespace GUI
 
             // Tính tổng tiền
             string maHangDangChon = cbxSanPham.SelectedValue.ToString();
-            Decimal giaBan = mangGiaBan[maHangDangChon];
-            decimal giaConLai = giaBan - (giaBan * (giamGiaMHTHem / 100));
-            tongTien += soLuongMHThem * giaConLai;
+            double giaBan = Convert.ToDouble(mangGiaBan[maHangDangChon]);
+            double giaConLai = giaBan - (giaBan * (giamGiaMHTHem / 100));
+            tongTien += Convert.ToDouble( soLuongMHThem * giaConLai);
             string formatTongTien = tongTien.ToString("N0", new NumberFormatInfo { NumberGroupSeparator = ".", NumberDecimalDigits = 0 });
             labTongTien.Text = formatTongTien + " VNĐ";
 
@@ -339,7 +355,7 @@ namespace GUI
 
         }
 
-        private Boolean layMatHangMuonTHem(ref string tenMHThem, ref int soLuongMHThem, ref decimal giamGiaMHTHem)
+        private Boolean layMatHangMuonTHem(ref string tenMHThem, ref int soLuongMHThem, ref double giamGiaMHTHem)
         {
             int ttMatHangDangChon = cbxSanPham.SelectedIndex;
             if (ttMatHangDangChon == -1)
@@ -354,7 +370,7 @@ namespace GUI
                 soLuongMHThem = Convert.ToInt32(txtSoLuong.Text.ToString());
                 if (txtGiamGia.Text != "")
                 {
-                    giamGiaMHTHem = Convert.ToDecimal(txtGiamGia.Text.ToString());
+                    giamGiaMHTHem = Convert.ToDouble(txtGiamGia.Text.ToString());
                 }
                 else
                 {
@@ -404,6 +420,11 @@ namespace GUI
                     }
 
                 }
+                list.Clear();
+                BotBanHang.HoiDataBase HoiVoi = new HoiDataBase();
+                string kq = HoiVoi.baoMotHoaDon(soHD,"Them");
+                send("", kq);
+
             }
             catch (Exception ex)
             {

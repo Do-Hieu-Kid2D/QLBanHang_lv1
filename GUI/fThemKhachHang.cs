@@ -22,7 +22,7 @@ namespace GUI
         string diaChi = "";
         string Email = "";
         string sdt = "";
-        formQuanLy fQL = new formQuanLy(new Project_CSDLBanHang.formDangNhap());
+        formQuanLy fQL = new formQuanLy(new Project_CSDLBanHang.formDangNhap(),"");
         public fThemKhachHang()
         {
             InitializeComponent();

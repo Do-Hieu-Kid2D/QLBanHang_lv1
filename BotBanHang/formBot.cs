@@ -14,8 +14,9 @@ namespace BotBanHang
     public partial class formBot : Form
     {
 
-        TelegramBotClient botClient;
-
+        public TelegramBotClient botClient;
+        //6052997336
+        public long chatId = 6052997336; // Mk fix trước 1 cái chat id là tài khuản của mk! -> cái này liên quan đến việc nhúng ở bên app
 
         int logCounter = 0;
 
@@ -116,7 +117,7 @@ namespace BotBanHang
                 string messageText = message.Text;
                 if (messageText == null) return;  //ko chơi với null
 
-                var chatId = message.Chat.Id;  //id của người chát với bot
+                chatId = message.Chat.Id;  //id của người chát với bot
 
                 AddLog($"{chatId}: {messageText}");  //show lên để xem -> chứ k phải gửi về telegram
 
@@ -128,13 +129,18 @@ namespace BotBanHang
 
 
                 // ----------- BẮT ĐẦU XỬ LÝ -----------------------------------------------------------------------------
-
+                // -> bot này là xử lý chủ động khi người chat đến ở đây!
+                // Còn xử lý mà tự động BÁO CÁO 1 cái j đó khi Database thay đổi thì gọi con bot ở chỗ thay đổi đó!
                 // -> Bây giờ chỉ cần Xử lý dữ liệu để tạo ra thằng reply
 
-                // 1. khi
+                // 1. khi hỏi về an Cốp:
                 if (messLow.StartsWith("gv"))
                 {
                     reply = "FeedBack Giáo viên:🥲 Môn học lập trình Windows thầy Đỗ Duy Cốp. Giảng quá xá là HAY!😍😍";
+                }
+                else if (messLow.StartsWith("j"))
+                {
+
                 }
                 else // Nếu k phải là thằng nào đặc biệt thì => hát cho Pạn nghe
                 {
