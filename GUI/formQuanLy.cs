@@ -1243,7 +1243,7 @@ namespace GUI
                     int kq = libDB.QueryNon(cmd);
                     MessageBox.Show($"Đã khôi phục CSDL về trạng thái ngày: {bienx}.", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
                     Refresh_Click(sender, e);
-
+                    send("☎️ Cơ sở dữ liệu đươc phục hồi về ngày \r\n", bienx);
 
                 }
                 catch (Exception ex)
@@ -1320,6 +1320,45 @@ namespace GUI
                 picThangHieu.BackgroundImage = global::GUI.Properties.Resources._50bbfcb39552530c0a43;
                 a = 0;
                 return;
+            }
+        }
+
+        private void btnThongKeNgay_Click(object sender, EventArgs e)
+        {
+            // Lấy về ngày tháng đang pcik
+            DateTime NTN = datePickNgay.Value;
+            string ngay = NTN.Day.ToString();
+            string thang = NTN.Month.ToString();
+            string nam = NTN.Year.ToString();
+            SqlServer libDB = new SqlServer(strCon);
+
+            // Thực thi nó trả về 1 chuỗi để mk cắt:
+            string query = "THONGKE_NGAY";
+            SqlCommand cmd = libDB.GetCmd(query);
+            cmd.Parameters.Add("@ngay", SqlDbType.Int).Value = Convert.ToInt32(ngay);
+            cmd.Parameters.Add("@thang", SqlDbType.Int).Value = Convert.ToInt32(thang);
+            cmd.Parameters.Add("@nam", SqlDbType.Int).Value = Convert.ToInt32(nam);
+
+            try
+            {
+                object obj =  libDB.Scalar(cmd);
+                string kq = Convert.ToString(obj);
+                string[] arr = kq.Split(new string[] { ">>>" }, StringSplitOptions.None);
+                MessageBox.Show(kq);
+                txtSLHDNgay.Text = arr[0];
+                txtTongDTNgay.Text = string.Format("{0:N0}", int.Parse(arr[1])) +" VNĐ";
+                txtTongTLNgay.Text = string.Format("{0:N0}", int.Parse(arr[2])) + " VNĐ";
+                txtTenMHTop1Ngay.Text = arr[3];
+                txtSoTienMHTop1.Text = string.Format("{0:N0}", int.Parse(arr[4])) + " VNĐ";
+                txtSoHDTop1.Text = arr[5];
+                txtTienHDTop1.Text = string.Format("{0:N0}", int.Parse(arr[6])) + " VNĐ";
+                txtSoHDLaiNN.Text = arr[7];
+                txtTienHDLaiNN.Text= string.Format("{0:N0}", int.Parse(arr[8])) + " VNĐ";
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(" lỗi này chưa fix -> Thống kê ngày BUG <-"+ex.Message, "Thông báo!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

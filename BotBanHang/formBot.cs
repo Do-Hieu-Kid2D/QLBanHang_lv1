@@ -15,6 +15,7 @@ namespace BotBanHang
     {
 
         public TelegramBotClient botClient;
+        HoiDataBase HoiData;
         //6052997336
         public long chatId = 6052997336; // Mk fix trước 1 cái chat id là tài khuản của mk! -> cái này liên quan đến việc nhúng ở bên app
 
@@ -48,6 +49,7 @@ namespace BotBanHang
         public formBot()
         {
             InitializeComponent();
+            HoiData = new HoiDataBase();
             // Thằng QuanLyBanHanglv1_bot
             string token = "6179052427:AAElG7akQqP9SpJKUnOY-olh-PCQ2xNhuys";
 
@@ -138,10 +140,30 @@ namespace BotBanHang
                 {
                     reply = "FeedBack Giáo viên:🥲 Môn học lập trình Windows thầy Đỗ Duy Cốp. Giảng quá xá là HAY!😍😍";
                 }
-                else if (messLow.StartsWith("j"))
+                else if (messLow.StartsWith("dh "))
                 {
-
+                    string soHD = messageText.Substring(3);
+                    reply = HoiData.baoMotHoaDon(soHD, "");
                 }
+                else if (messLow.StartsWith("kh "))
+                {
+                    string tenKH = messageText.Substring(3);
+                    reply = HoiData.baoMotKhachHang(tenKH);
+                }
+                else if (messLow.StartsWith("sao roi"))
+                {
+                    DateTime NTN = new DateTime();
+                    NTN = DateTime.Now;
+                    int ngay = Convert.ToInt32(NTN.Day.ToString());
+                    int thang = Convert.ToInt32(NTN.Month.ToString());
+                    int nam = Convert.ToInt32(NTN.Year.ToString());
+                    reply = HoiData.baoMotNgay(ngay,thang,nam);
+                }
+                //else if (messLow.StartsWith("tk "))
+                //{
+                //    string tenKH = messageText.Substring(3);
+                //    reply = HoiData.baoMotKhachHang(tenKH);
+                //}
                 else // Nếu k phải là thằng nào đặc biệt thì => hát cho Pạn nghe
                 {
                     reply = "🤡Tôi nói pạn nghe: " + messageText;
