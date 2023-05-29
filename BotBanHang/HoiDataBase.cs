@@ -86,7 +86,7 @@ namespace BotBanHang
                     using (SqlCommand cmd = cn.CreateCommand())
                     {
                         string query = "THONGKE_NGAY_HOI";
-                        cmd.Parameters.Add("@ngay", SqlDbType.Int).Value = ngay + 1;
+                        cmd.Parameters.Add("@ngay", SqlDbType.Int).Value = ngay;
                         cmd.Parameters.Add("@thang", SqlDbType.Int).Value = thang;
                         cmd.Parameters.Add("@nam", SqlDbType.Int).Value = nam;
                             cmd.CommandText = query;

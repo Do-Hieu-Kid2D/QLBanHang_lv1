@@ -244,6 +244,7 @@
     <Content Include="report\store.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="T-SQL\script_data_QLBanHang.sql" />
     <None Include="Resources\order.png" />
     <None Include="Resources\order %281%29.png" />
     <None Include="Resources\1fe739a32dcff491adde.jpg" />

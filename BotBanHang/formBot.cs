@@ -157,6 +157,7 @@ namespace BotBanHang
                     int ngay = Convert.ToInt32(NTN.Day.ToString());
                     int thang = Convert.ToInt32(NTN.Month.ToString());
                     int nam = Convert.ToInt32(NTN.Year.ToString());
+                    ngay++;  
                     reply = HoiData.baoMotNgay(ngay,thang,nam);
                 }
                 //else if (messLow.StartsWith("tk "))
