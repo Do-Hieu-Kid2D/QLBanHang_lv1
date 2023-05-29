@@ -3,7 +3,9 @@
 ## ⏲️ Time: `*5/2023*`  📄 Language: `C#`  🗃️ Database: `SQL Sever`  
 
 👨‍🏫 Teacher [Do Duy Cop](https://github.com/duycop)
+
 ---
+
 # 👉Mô tả:
 
 ### `🌱 Project nhỏ đầu tiên 🌱`
@@ -23,7 +25,7 @@
 
 > Em cảm ơn thầy!😀 - mong thầy dạy dỗ chúng em nhiều hơn ạ! 😵💫
 ---
-# 💣 ỨNG DỤNG QUẢN LÝ BÁN HÀNG 💣---
+# 💣 ỨNG DỤNG QUẢN LÝ BÁN HÀNG 💣
 
 **1.Database🗃️ => Image diagram (File source: quanLyBanHang.sql)**
   
