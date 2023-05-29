@@ -23,8 +23,8 @@
 
 > Em cảm ơn thầy!😀 - mong thầy dạy dỗ chúng em nhiều hơn ạ! 😵💫
 ---
-# 💣 ỨNG DỤNG QUẢN LÝ BÁN HÀNG 💣
----
+# 💣 ỨNG DỤNG QUẢN LÝ BÁN HÀNG 💣---
+
 **1.Database🗃️ => Image diagram (File source: quanLyBanHang.sql)**
   
 <b>2.Code </b>🧾 
