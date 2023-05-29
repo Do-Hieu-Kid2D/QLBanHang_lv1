@@ -315,6 +315,18 @@ namespace GUI
                 MessageBox.Show("Bạn chưa nhập số lượng.", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            // Xem nó thêm có lớn hơn... 
+            // lấy mã trên combobox 
+            string maSP = cbxSanPham.SelectedValue.ToString();
+            string query = $"select soluong from mathang where maHang = '{maSP}'";
+            SqlCommand cmd = libDB.GetCmdSQLChay(query);
+            int conLai = (int)libDB.Scalar(cmd);
+            int datMua = Convert.ToInt32(txtSoLuong.Text);
+            if(conLai < datMua)
+            {
+                MessageBox.Show($"Trong kho chỉ còn {conLai} sản phẩm này.", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             string tenMHThem = "";
             int soLuongMHThem = 1;
             double giamGiaMHTHem = 0;

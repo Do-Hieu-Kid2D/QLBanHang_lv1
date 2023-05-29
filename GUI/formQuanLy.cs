@@ -1344,7 +1344,6 @@ namespace GUI
                 object obj =  libDB.Scalar(cmd);
                 string kq = Convert.ToString(obj);
                 string[] arr = kq.Split(new string[] { ">>>" }, StringSplitOptions.None);
-                MessageBox.Show(kq);
                 txtSLHDNgay.Text = arr[0];
                 txtTongDTNgay.Text = string.Format("{0:N0}", int.Parse(arr[1])) +" VNĐ";
                 txtTongTLNgay.Text = string.Format("{0:N0}", int.Parse(arr[2])) + " VNĐ";
@@ -1359,6 +1358,32 @@ namespace GUI
             catch (Exception ex)
             {
                 MessageBox.Show(" lỗi này chưa fix -> Thống kê ngày BUG <-"+ex.Message, "Thông báo!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnThongKeThang_Click(object sender, EventArgs e)
+        {
+            DateTime NTN = pickDateThang.Value;
+            string thang = NTN.Month.ToString();
+            string nam = NTN.Year.ToString();
+            SqlServer libDB = new SqlServer(strCon);
+
+            // Thực thi nó trả về 1 chuỗi để mk cắt:
+            string query = "THONGKE_THANG";
+            SqlCommand cmd = libDB.GetCmd(query);
+            cmd.Parameters.Add("@thang", SqlDbType.Int).Value = Convert.ToInt32(thang);
+            cmd.Parameters.Add("@nam", SqlDbType.Int).Value = Convert.ToInt32(nam);
+
+            try
+            {
+                object obj = libDB.Scalar(cmd);
+                string kq = Convert.ToString(obj);
+                txtTongThang.Text = kq;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(" lỗi này chưa fix -> Thống kê ngày BUG <-" + ex.Message, "Thông báo!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
