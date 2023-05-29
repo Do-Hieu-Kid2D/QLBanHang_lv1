@@ -4,7 +4,7 @@
 
 👨‍🏫 Teacher [Do Duy Cop](https://github.com/duycop)
 ---
-## 👉Mô tả:
+#👉Mô tả:
 
 ### `🌱 Project nhỏ đầu tiên 🌱`
 - Ứng dụng quản lý bán hàng xây dụng nhằm việc học ngôn ngữ `C#` và quản lý database `SQL Sever`. => Cùi mía  😥.
@@ -23,7 +23,7 @@
 
 > Em cảm ơn thầy!😀 - mong thầy dạy dỗ chúng em nhiều hơn ạ! 😵💫
 ---
-### 💣 ỨNG DỤNG QUẢN LÝ BÁN HÀNG
+#💣 ỨNG DỤNG QUẢN LÝ BÁN HÀNG 💣
 ---
 **1.Database🗃️ => Image diagram (File source: quanLyBanHang.sql)**
   
