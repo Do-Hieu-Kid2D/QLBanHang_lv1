@@ -2,7 +2,7 @@
 
 ## ⏲️ Time: `*5/2023*`  📄 Language: `C#`  🗃️ Database: `SQL Sever`  
 
-👨‍🏫 Teacher [Do Duy Cop](https://github.com/duycop)
+## 👨‍🏫 Teacher [Do Duy Cop](https://github.com/duycop)
 
 ---
 
