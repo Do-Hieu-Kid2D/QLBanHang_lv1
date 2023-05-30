@@ -40,10 +40,11 @@
     -  **DTO:** Các class hỗ trợ lữu trữ dữ liệu thành đối tượng khi tương tác trương trình.
     -  **BotBanHang:** Một con bot telegram được dùng để báo cáo vài thông tin tìm được ở DB.
  => Ứng dụng chạy trên máy mình cũng ổn 🤭 Mọi người có thể clone solution và chạy file sql để có database.
-### Source Code
+### 📄 Source Code
 
 <b>1.Code 🧾 =>Clone gitHub:(src project: [QLBanHang_lv1](https://github.com/Do-Hieu-Kid2D/QLBanHang_lv1))  </b>
-<img src="severe pro" width="500">
+
+<img src="https://github.com/Do-Hieu-Kid2D/QLBanHang_lv1/blob/master/img_redmid/ungDung.png" width="200">
 
 **2.Database🗃️ => Image diagram (File source: [script_data_QLBanHang.sql](https://github.com/Do-Hieu-Kid2D/QLBanHang_lv1/blob/master/GUI/T-SQL/script_data_QLBanHang.sql))**
 
