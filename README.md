@@ -42,39 +42,52 @@
  => Ứng dụng chạy trên máy mình cũng ổn 🤭 Mọi người có thể clone solution và chạy file sql để có database.
 ### Source Code
 
-<b>1.Code 🧾 =>Clone gitHub:(src project: [QLBanHang_lv1]())  </b>
-<img src="severe pro" with= 250>
-**2.Database🗃️ => Image diagram (File source: [quanLyBanHang.sql]())**
+<b>1.Code 🧾 =>Clone gitHub:(src project: [QLBanHang_lv1](https://github.com/Do-Hieu-Kid2D/QLBanHang_lv1))  </b>
+<img src="severe pro" width="500">
 
-<img src="diagram" with= 250>
+**2.Database🗃️ => Image diagram (File source: [script_data_QLBanHang.sql](https://github.com/Do-Hieu-Kid2D/QLBanHang_lv1/blob/master/GUI/T-SQL/script_data_QLBanHang.sql))**
+
+<img src="https://github.com/Do-Hieu-Kid2D/QLBanHang_lv1/blob/master/img_redmid/diag.png"  width="500">
 
 **3.Image demo application🖼️ => Một số hình ảnh của ứng dụng:**
-- Đăng nhập:
-<img src="diagram" with= 250>
 
-- Module quản lý:
+##### 💥Đăng nhập ứng dụng:
+
+<img src="https://github.com/Do-Hieu-Kid2D/QLBanHang_lv1/blob/master/img_redmid/dangNhap.png" width= 450>
+
+##### 💥Module quản lý:
 
 Gồm nhiều tab mỗi tab quản lý 1 đối tượng hay nhiệm vụ khác nhau:
-| Mặt hàng | Đơn hàng | Khách hàng | Nhân viên |
-| :--- | :--- | :--- | :--- |
-| <img src="diagram" with= 250>| <img src="diagram" with= 250> | <img src="diagram" with= 250> | <img src="diagram" with= 250> |
+| Mặt hàng | Đơn hàng |
+| :--- | :--- |
+| <img src="https://github.com/Do-Hieu-Kid2D/QLBanHang_lv1/blob/master/img_redmid/MatHang.png" width= 450>| <img src="https://github.com/Do-Hieu-Kid2D/QLBanHang_lv1/blob/master/img_redmid/DonHang.png" width= 450> |
 
-| Nhà cung cấp | Thống kê - Báo cáo | Quản lý sao lưu | About |
-| :--- | :--- | :--- | :--- |
-| <img src="diagram" with= 250>| <img src="diagram" with= 250> | <img src="diagram" with= 250> | <img src="diagram" with= 250> |
+|Khách hàng | Nhân viên |
+|:--- | :--- |
+|<img src="https://github.com/Do-Hieu-Kid2D/QLBanHang_lv1/blob/master/img_redmid/KhachHang.png" width= 450>|<img src="https://github.com/Do-Hieu-Kid2D/QLBanHang_lv1/blob/master/img_redmid/NhanVien.png" width= 450>|
 
-- Module nhân viên:
+| Nhà cung cấp | Thống kê - Báo cáo |
+| :--- | :--- |
+| <img src="https://github.com/Do-Hieu-Kid2D/QLBanHang_lv1/blob/master/img_redmid/NhaCC.png" with= 450>| <img src="https://github.com/Do-Hieu-Kid2D/QLBanHang_lv1/blob/master/img_redmid/TKBC.png" with= 450> |
+
+| Quản lý sao lưu | About |
+| :--- | :--- |
+|<img src="https://github.com/Do-Hieu-Kid2D/QLBanHang_lv1/blob/master/img_redmid/QLSL.png" with= 450> | <img src="https://github.com/Do-Hieu-Kid2D/QLBanHang_lv1/blob/master/img_redmid/About.png" with= 450> |
+
+##### 💥Module nhân viên:
 
 Nhân viên hiện tại có chức năng chủ yếu quan trọng nhất là lập hóa đơn bán hàng:
-<img src="diagram" with= 450>
 
-- Bot Telegram:
+<img src="https://github.com/Do-Hieu-Kid2D/QLBanHang_lv1/blob/master/img_redmid/LapHoaDOn.png" width= 550>
+
+
+##### 💥Bot Telegram:
 
 Tự động báo cáo một số hoạt động và trả lời dữ liệu thực về cửa hàng khi được hỏi:
 
 | Lập hóa đơn mới | Tìm khách hàng | Báo cáo doanh thu | 
-| :--- | :--- | :--- | :--- |
-| <img src="diagram" with= 250>| <img src="diagram" with= 250> | <img src="diagram" with= 250> |
+| :--- | :--- | :--- | 
+| <img src="https://github.com/Do-Hieu-Kid2D/QLBanHang_lv1/blob/master/img_redmid/BotLapHD.png" width= 350>| <img src="https://github.com/Do-Hieu-Kid2D/QLBanHang_lv1/blob/master/img_redmid/BotTimKIem.png" width= 350> | <img src="https://github.com/Do-Hieu-Kid2D/QLBanHang_lv1/blob/master/img_redmid/BotThongKE.png" width= 350> |
 
 ...
 
