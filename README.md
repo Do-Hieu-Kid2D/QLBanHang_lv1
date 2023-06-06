@@ -98,5 +98,4 @@ Tự động báo cáo một số hoạt động và trả lời dữ liệu th�
 
 ## ⏹️ The end -- Ứng dụng hiện tại chỉ được như vậy! 😴 WAE kid2D 👋
 
-[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=Do-Hieu-Kid2D&repo=QLBanHang_lv1)](https://github.com/anuraghazra/github-readme-stats)
 
