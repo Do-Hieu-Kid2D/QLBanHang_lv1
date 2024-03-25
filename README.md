@@ -46,7 +46,7 @@
 
 <img src="https://github.com/Do-Hieu-Kid2D/QLBanHang_lv1/blob/master/img_redmid/ungDung.png" width="200">
 
-**2.Database🗃️ => Image diagram (File source: [script_data_QLBanHang.sql](https://github.com/Do-Hieu-Kid2D/QLBanHang_lv1/blob/master/GUI/T-SQL/script_data_QLBanHang.sql))**
+**2.Database🗃️ => Image diagram **
 
 <img src="https://github.com/Do-Hieu-Kid2D/QLBanHang_lv1/blob/master/img_redmid/diag.png"  width="500">
 
